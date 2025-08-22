@@ -49,6 +49,8 @@
 
         .header-main {
             padding: 0.5rem 0;
+            position: relative;
+            z-index: 1000;
         }
 
         /* Header Navigation Links */
@@ -86,9 +88,164 @@
             width: 100%;
         }
 
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Navigation Overlay */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .mobile-nav-content {
+            padding: 1rem;
+        }
+
+        .mobile-nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-nav-section h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--light-text-color);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.75rem 0;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #f3f4f6;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-nav-link:last-child {
+            border-bottom: none;
+        }
+
+        /* Mobile header spacing */
+        @media (max-width: 768px) {
+            .header-main {
+                padding: 0.75rem 0;
+            }
+
+            .header-main .row > div {
+                margin-bottom: 0;
+            }
+
+            /* Ensure proper spacing between logo and icons */
+            .col-6:first-child {
+                padding-right: 0.5rem;
+            }
+
+            .col-6:last-child {
+                padding-left: 0.5rem;
+            }
+
+            /* Search bar full width on mobile */
+            .col-12.d-flex.justify-content-center {
+                padding: 0 0.5rem;
+            }
+        }
+
         .header-main .container-fluid {
             padding-left: 2rem;
             padding-right: 2rem;
+            overflow: visible;
+        }
+
+        /* Ensure header row allows dropdown overflow */
+        .header-main .row {
+            overflow: visible;
+        }
+
+        /* Ensure profile column allows dropdown overflow */
+        .header-main .col-lg-3:last-child {
+            overflow: visible !important;
         }
 
         <!-- .social-icons a {
@@ -302,6 +459,13 @@
         .profile-dropdown {
             position: relative;
             display: inline-block;
+            z-index: 99999;
+        }
+
+        /* Ensure dropdown container allows overflow */
+        .profile-dropdown,
+        .profile-dropdown * {
+            overflow: visible !important;
         }
 
         .profile-dropdown * {
@@ -369,7 +533,7 @@
             visibility: hidden;
             transform: translateY(-8px) scale(0.95);
             transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 50;
+            z-index: 999999 !important;
             padding: 0.25rem;
         }
 
@@ -380,55 +544,72 @@
             transform: translateY(0) scale(1);
         }
 
-        .profile-dropdown .dropdown-header {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
-            background: #f8f9fa;
-            border-radius: 8px 8px 0 0;
+        .profile-dropdown .dropdown-label {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 0.75rem;
+            margin-bottom: 0.25rem;
         }
 
-        .profile-dropdown .dropdown-header .user-name {
-            font-weight: 600;
+        .profile-dropdown .user-name {
+            font-weight: 500;
             color: var(--text-color);
-            margin: 0;
-            font-size: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .profile-dropdown .dropdown-header .user-email {
+        .profile-dropdown .user-email {
             color: var(--light-text-color);
-            margin: 0.25rem 0 0 0;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
+            line-height: 1rem;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .profile-dropdown .dropdown-separator {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 0.25rem 0;
+        }
+
+        .profile-dropdown .dropdown-group {
+            padding: 0.25rem 0;
         }
 
         .profile-dropdown .dropdown-item {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem 1rem;
+            padding: 0.5rem 0.75rem;
             color: var(--text-color);
             text-decoration: none;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.15s ease;
             border: none;
             background: none;
             width: 100%;
             text-align: left;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            cursor: pointer;
         }
 
         .profile-dropdown .dropdown-item:hover {
-            background-color: #f8f9fa;
-            color: var(--primary-color);
+            background-color: #f3f4f6;
         }
 
         .profile-dropdown .dropdown-item i {
             font-size: 1rem;
             width: 16px;
-            text-align: center;
-        }
-
-        .profile-dropdown .dropdown-divider {
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 0;
+            height: 16px;
+            opacity: 0.6;
+            flex-shrink: 0;
         }
         
         .navbar-categories {
@@ -537,18 +718,62 @@
             }
 
             .navbar-brand img {
-                max-height: 80px;
+                max-height: 60px;
             }
 
-            .header-nav {
-                gap: 1rem !important;
-                justify-content: center;
-                margin: 0.5rem 0;
+            /* Mobile header layout */
+            .header-main .row {
+                align-items: flex-start;
             }
 
-            .nav-link-header {
-                font-size: 0.85rem;
-                padding: 0.3rem 0;
+            /* Mobile search bar styling */
+            .mobile-search-bar {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .mobile-search-bar .form-control {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.75rem;
+            }
+
+            .mobile-search-bar .btn {
+                padding: 0.6rem 0.75rem;
+            }
+
+            /* Mobile icons container */
+            .col-6.d-flex.d-md-none {
+                gap: 0.75rem;
+            }
+
+            /* Hamburger menu mobile styling */
+            .hamburger-menu {
+                display: flex;
+                padding: 0.4rem;
+            }
+
+            .hamburger-line {
+                width: 20px;
+                height: 2px;
+            }
+
+            /* Mobile profile dropdown adjustments */
+            .profile-dropdown .avatar {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
+            }
+
+            .profile-dropdown .dropdown-content {
+                right: -10px;
+                min-width: 240px;
+                max-width: 240px;
+            }
+
+            /* Mobile icon links */
+            .icon-link {
+                font-size: 1.25rem;
+                padding: 0.4rem;
             }
 
             /* Mobile icon spacing */
@@ -556,13 +781,16 @@
                 font-size: 1.8rem;
             }
 
-            .profile-dropdown .dropdown-toggle {
-                font-size: 1.8rem;
+            .profile-dropdown .avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
             }
 
-            .profile-dropdown .dropdown-menu {
-                right: -20px;
-                min-width: 260px;
+            .profile-dropdown .dropdown-content {
+                right: -10px;
+                min-width: 240px;
+                max-width: 240px;
             }
 
             .gap-3 {
@@ -925,13 +1153,71 @@
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <!-- Logo on the left -->
-                    <div class="col-lg-2 col-md-3 col-sm-12 text-center text-md-start" data-aos="fade-right">
+                    <div class="col-lg-2 col-md-3 col-6 text-center text-md-start" data-aos="fade-right">
                          <a class="navbar-brand" href="#">
                             <img src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif" alt="Prabhuji Logo">
                         </a>
                     </div>
-                    <!-- Navigation Links -->
-                    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center" data-aos="fade-up">
+
+                    <!-- Mobile Icons (Mobile Only) -->
+                    <div class="col-6 d-flex d-md-none justify-content-end align-items-center gap-2">
+                        <!-- Profile Dropdown -->
+                        <div class="profile-dropdown">
+                            <button class="dropdown-trigger" type="button">
+                                <div class="avatar">
+                                    KK
+                                </div>
+                                <i class="bi bi-chevron-down chevron"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown-label">
+                                    <span class="user-name">Keith Kennedy</span>
+                                    <span class="user-email">k.kennedy@originui.com</span>
+                                </div>
+                                <div class="dropdown-separator"></div>
+                                <div class="dropdown-group">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-lightning"></i>
+                                        <span>Option 1</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-layers"></i>
+                                        <span>Option 2</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-book"></i>
+                                        <span>Option 3</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-separator"></div>
+                                <div class="dropdown-group">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-pin"></i>
+                                        <span>Option 4</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-person-gear"></i>
+                                        <span>Option 5</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-separator"></div>
+                                <a href="#" class="dropdown-item">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
+                        <a href="#" class="icon-link"><i class="bi bi-bag"></i></a>
+                        <!-- Hamburger Menu -->
+                        <button class="hamburger-menu" id="hamburgerMenu">
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                            <span class="hamburger-line"></span>
+                        </button>
+                    </div>
+
+                    <!-- Navigation Links (Desktop Only) -->
+                    <div class="col-lg-4 col-md-6 d-none d-md-flex justify-content-center" data-aos="fade-up">
                         <nav class="header-nav d-flex align-items-center gap-4">
                             <a href="#" class="nav-link-header">About Us</a>
                             <a href="#" class="nav-link-header">Shop Now</a>
@@ -939,47 +1225,57 @@
                             <a href="#" class="nav-link-header">Careers</a>
                         </nav>
                     </div>
+
                     <!-- Search bar -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 d-flex justify-content-center" data-aos="zoom-in">
-                        <div class="input-group" style="max-width: 350px;">
+                    <div class="col-lg-3 col-md-3 col-12 d-flex justify-content-center mt-3 mt-md-0" data-aos="zoom-in">
+                        <div class="input-group mobile-search-bar" style="max-width: 350px;">
                             <input type="text" class="form-control" placeholder="Search for products...">
                             <button class="btn btn-dark" type="button"><i class="bi bi-search"></i></button>
                         </div>
                     </div>
-                    <!-- Profile and Cart icons -->
-                    <div class="col-lg-3 col-md-3 col-sm-12 d-flex justify-content-end justify-content-sm-center align-items-center gap-3" data-aos="fade-left">
+
+                    <!-- Profile and Cart icons (Desktop Only) -->
+                    <div class="col-lg-3 col-md-3 d-none d-md-flex justify-content-end align-items-center gap-3" data-aos="fade-left">
                         <!-- Profile Dropdown -->
                         <div class="profile-dropdown">
-                            <button class="dropdown-toggle" type="button">
-                                <i class="bi bi-person-circle"></i>
-                                <i class="bi bi-chevron-down" style="font-size: 0.8rem;"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                                <div class="dropdown-header">
-                                    <div class="user-name">Keith Kennedy</div>
-                                    <div class="user-email">k.kennedy@originui.com</div>
+                            <button class="dropdown-trigger" type="button">
+                                <div class="avatar">
+                                    KK
                                 </div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-gear"></i>
-                                    <span>Option 1</span>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-layers"></i>
-                                    <span>Option 2</span>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-book"></i>
-                                    <span>Option 3</span>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-people"></i>
-                                    <span>Option 4</span>
-                                </a>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-shuffle"></i>
-                                    <span>Option 5</span>
-                                </a>
-                                <div class="dropdown-divider"></div>
+                                <i class="bi bi-chevron-down chevron"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="dropdown-label">
+                                    <span class="user-name">Keith Kennedy</span>
+                                    <span class="user-email">k.kennedy@originui.com</span>
+                                </div>
+                                <div class="dropdown-separator"></div>
+                                <div class="dropdown-group">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-lightning"></i>
+                                        <span>Option 1</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-layers"></i>
+                                        <span>Option 2</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-book"></i>
+                                        <span>Option 3</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-separator"></div>
+                                <div class="dropdown-group">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-pin"></i>
+                                        <span>Option 4</span>
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="bi bi-person-gear"></i>
+                                        <span>Option 5</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-separator"></div>
                                 <a href="#" class="dropdown-item">
                                     <i class="bi bi-box-arrow-right"></i>
                                     <span>Logout</span>
@@ -1017,6 +1313,51 @@
             </div>
         </nav> -->
     </header>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+        <div class="mobile-nav-header">
+            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 600;">Menu</h2>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+        <div class="mobile-nav-content">
+            <div class="mobile-nav-section">
+                <h3>Navigation</h3>
+                <a href="#" class="mobile-nav-link">About Us</a>
+                <a href="#" class="mobile-nav-link">Shop Now</a>
+                <a href="#" class="mobile-nav-link">Bulk Enquiry</a>
+                <a href="#" class="mobile-nav-link">Careers</a>
+            </div>
+            <div class="mobile-nav-section">
+                <h3>Categories</h3>
+                <a href="#" class="mobile-nav-link">Namkeen</a>
+                <a href="#" class="mobile-nav-link">Sweets</a>
+                <a href="#" class="mobile-nav-link">Lachha</a>
+                <a href="#" class="mobile-nav-link">Bakery</a>
+                <a href="#" class="mobile-nav-link">Beverages</a>
+                <a href="#" class="mobile-nav-link">Festive</a>
+                <a href="#" class="mobile-nav-link">Others</a>
+                <a href="#" class="mobile-nav-link">Offers</a>
+            </div>
+            <div class="mobile-nav-section">
+                <h3>Account</h3>
+                <a href="#" class="mobile-nav-link">
+                    <i class="bi bi-person-circle me-2"></i>Profile
+                </a>
+                <a href="#" class="mobile-nav-link">
+                    <i class="bi bi-bag me-2"></i>Cart
+                </a>
+                <a href="#" class="mobile-nav-link">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -1380,12 +1721,12 @@
       // Profile dropdown functionality
       document.addEventListener('DOMContentLoaded', function() {
         const profileDropdown = document.querySelector('.profile-dropdown');
-        const dropdownToggle = document.querySelector('.profile-dropdown .dropdown-toggle');
-        const dropdownMenu = document.querySelector('.profile-dropdown .dropdown-menu');
+        const dropdownTrigger = document.querySelector('.profile-dropdown .dropdown-trigger');
+        const dropdownContent = document.querySelector('.profile-dropdown .dropdown-content');
 
-        console.log('Profile dropdown elements:', { profileDropdown, dropdownToggle, dropdownMenu });
+        console.log('Profile dropdown elements:', { profileDropdown, dropdownTrigger, dropdownContent });
 
-        if (profileDropdown && dropdownToggle && dropdownMenu) {
+        if (profileDropdown && dropdownTrigger && dropdownContent) {
           let isOpen = false;
           let hoverTimeout;
 
@@ -1393,30 +1734,22 @@
           function showDropdown() {
             clearTimeout(hoverTimeout);
             isOpen = true;
-            dropdownMenu.style.opacity = '1';
-            dropdownMenu.style.visibility = 'visible';
-            dropdownMenu.style.transform = 'translateY(0)';
-            dropdownMenu.style.pointerEvents = 'auto';
             profileDropdown.classList.add('show');
           }
 
           function hideDropdown() {
             hoverTimeout = setTimeout(function() {
               isOpen = false;
-              dropdownMenu.style.opacity = '0';
-              dropdownMenu.style.visibility = 'hidden';
-              dropdownMenu.style.transform = 'translateY(-10px)';
-              dropdownMenu.style.pointerEvents = 'none';
               profileDropdown.classList.remove('show');
             }, 150);
           }
 
-          // Mouse events
+          // Mouse events for hover effect
           profileDropdown.addEventListener('mouseenter', showDropdown);
           profileDropdown.addEventListener('mouseleave', hideDropdown);
 
           // Click functionality as backup
-          dropdownToggle.addEventListener('click', function(e) {
+          dropdownTrigger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             if (isOpen) {
@@ -1432,9 +1765,54 @@
               hideDropdown();
             }
           });
+
+          // Prevent dropdown from closing when clicking inside
+          dropdownContent.addEventListener('click', function(e) {
+            e.stopPropagation();
+          });
         } else {
           console.error('Profile dropdown elements not found');
         }
+      });
+
+      // Mobile Navigation functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const hamburgerMenu = document.getElementById('hamburgerMenu');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        const mobileNavMenu = document.getElementById('mobileNavMenu');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+
+        function openMobileNav() {
+          hamburgerMenu.classList.add('active');
+          mobileNavOverlay.classList.add('active');
+          mobileNavMenu.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileNav() {
+          hamburgerMenu.classList.remove('active');
+          mobileNavOverlay.classList.remove('active');
+          mobileNavMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+
+        // Event listeners
+        hamburgerMenu.addEventListener('click', openMobileNav);
+        mobileNavClose.addEventListener('click', closeMobileNav);
+        mobileNavOverlay.addEventListener('click', closeMobileNav);
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeMobileNav();
+          }
+        });
+
+        // Close menu when clicking on nav links
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileNavLinks.forEach(link => {
+          link.addEventListener('click', closeMobileNav);
+        });
       });
     </script>
 </body>
