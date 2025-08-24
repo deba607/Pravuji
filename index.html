@@ -1,1881 +1,2026 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prabhuji Pure Food - A Taste of Tradition</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <!-- AOS Animations CSS -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <style>
-        :root {
-            overflow-x: hidden;
-            --primary-color: rgb(166,12,108);
-            --secondary-color: #f3e5f5;
-            --text-color: #333;
-            --light-text-color: #6c757d;
-            --accent-color: #ff6f61;
-            --accent-2: #00bfa5;
-            --accent-3: #ffca28;
-            --gradient-1: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            --gradient-2: linear-gradient(135deg, #ff6f61 0%, #ffca28 100%);
-            --gradient-3: linear-gradient(135deg, #00bfa5 0%, #8e24aa 100%);
-            overflow-x: hidden;
-        }
+      :root {
+        overflow-x: hidden;
+        --primary-color: rgb(166, 12, 108);
+        --secondary-color: #f3e5f5;
+        --text-color: #333;
+        --light-text-color: #6c757d;
+        --accent-color: #ff6f61;
+        --accent-2: #00bfa5;
+        --accent-3: #ffca28;
+        --gradient-1: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        --gradient-2: linear-gradient(135deg, #ff6f61 0%, #ffca28 100%);
+        --gradient-3: linear-gradient(135deg, #00bfa5 0%, #8e24aa 100%);
+        overflow-x: hidden;
+      }
 
-        html, body {
-            overflow-x: hidden;
-        }
+      html,
+      body {
+        overflow-x: hidden;
+      }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-color);
-            background: linear-gradient(180deg, #fff 0%, #fdf7ff 50%, #fff 100%);
-            background-attachment: fixed;
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text-color);
+        background: linear-gradient(180deg, #fff 0%, #fdf7ff 50%, #fff 100%);
+        background-attachment: fixed;
+        margin: 0;
+        padding: 0;
+      }
 
-        /* Header Styles */
-        .top-bar {
-            background-color: #000;
-            color: #fff;
-            font-size: 0.85rem;
-            padding: 0.5rem 0;
-        }
+      /* Header Styles */
+      .top-bar {
+        background-color: #000;
+        color: #fff;
+        font-size: 0.85rem;
+        padding: 0.5rem 0;
+      }
 
+      .header-main {
+        padding: 0.5rem 0;
+        position: relative;
+        z-index: 1000;
+        background: #fff;
+      }
+
+      /* Ensure header has proper spacing */
+      .header-main .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      /* Header Navigation Links */
+      .header-nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-link-header {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.25rem 0;
+        position: relative;
+        transition: color 0.3s ease;
+        white-space: nowrap;
+      }
+
+      .nav-link-header:hover {
+        color: var(--primary-color);
+      }
+
+      .nav-link-header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary-color);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link-header:hover::after {
+        width: 100%;
+      }
+
+      /* Hamburger Menu Styles */
+      .hamburger-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+        z-index: 1001;
+      }
+
+      .hamburger-line {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        margin: 3px 0;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger-menu.active .hamburger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Mobile Navigation Overlay */
+      .mobile-nav-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-nav-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .mobile-nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        max-width: 85vw;
+        height: 100vh;
+        background: white;
+        z-index: 1000;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+      }
+
+      .mobile-nav-menu.active {
+        right: 0;
+      }
+
+      .mobile-nav-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .mobile-nav-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+      }
+
+      .mobile-nav-content {
+        padding: 1rem;
+      }
+
+      .mobile-nav-section {
+        margin-bottom: 2rem;
+      }
+
+      .mobile-nav-section h3 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--light-text-color);
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .mobile-nav-link {
+        display: block;
+        padding: 0.75rem 0;
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid #f3f4f6;
+        transition: color 0.2s ease;
+      }
+
+      .mobile-nav-link:hover {
+        color: var(--primary-color);
+      }
+
+      .mobile-nav-link:last-child {
+        border-bottom: none;
+      }
+
+      /* Mobile header spacing */
+      @media (max-width: 768px) {
         .header-main {
-            padding: 0.5rem 0;
-            position: relative;
-            z-index: 1000;
-            background: #fff;
+          padding: 0.75rem 0;
         }
 
-        /* Ensure header has proper spacing */
-        .header-main .container-fluid {
-            padding-left: 2rem;
-            padding-right: 2rem;
+        .header-main .row > div {
+          margin-bottom: 0;
         }
 
-        /* Header Navigation Links */
-        .header-nav {
-            flex-wrap: wrap;
+        /* Ensure proper spacing between logo and icons */
+        .col-6:first-child {
+          padding-right: 0.5rem;
         }
 
-        .nav-link-header {
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            padding: 0.25rem 0;
-            position: relative;
-            transition: color 0.3s ease;
-            white-space: nowrap;
+        .col-6:last-child {
+          padding-left: 0.5rem;
         }
 
-        .nav-link-header:hover {
-            color: var(--primary-color);
+        /* Search bar full width on mobile */
+        .col-12.d-flex.justify-content-center {
+          padding: 0 0.5rem;
         }
+      }
 
-        .nav-link-header::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
+      .header-main .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        overflow: visible;
+      }
 
-        .nav-link-header:hover::after {
-            width: 100%;
-        }
+      /* Ensure header row allows dropdown overflow */
+      .header-main .row {
+        overflow: visible;
+      }
 
-        /* Hamburger Menu Styles */
-        .hamburger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-            background: none;
-            border: none;
-            z-index: 1001;
-        }
+      /* Ensure profile column allows dropdown overflow */
+      .header-main .col-lg-3:last-child {
+        overflow: visible !important;
+      }
 
-        .hamburger-line {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-color);
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
+      <!-- .social-icons a {
+        color: var(--text-color);
+        margin-right: 1rem;
+        font-size: 1.2rem;
+      }
+      -- > .header-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        margin: 0 0.8rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
 
-        .hamburger-menu.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
+      .input-group .form-control {
+        border-radius: 25px 0 0 25px !important;
+        border-right: none !important;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        border: 1px solid #ced4da;
+      }
+      .input-group .btn {
+        border-radius: 0 25px 25px 0 !important;
+        border-left: none !important;
+        padding: 0.75rem 1.25rem;
+        border: 1px solid #343a40;
+      }
 
-        .hamburger-menu.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
+      /* Ensure no conflicting border radius */
+      .input-group .form-control:focus {
+        border-radius: 25px 0 0 25px !important;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
 
-        .hamburger-menu.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
+      .input-group .btn:focus {
+        border-radius: 0 25px 25px 0 !important;
+      }
 
-        /* Mobile Navigation Overlay */
-        .mobile-nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+      .input-group {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 25px !important;
+        overflow: hidden;
+      }
 
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+      /* Override Bootstrap input-group defaults */
+      .input-group > .form-control:not(:last-child) {
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+      }
 
-        .mobile-nav-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            max-width: 85vw;
-            height: 100vh;
-            background: white;
-            z-index: 1000;
-            transition: right 0.3s ease;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
+      .input-group > .btn:not(:first-child) {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+      }
 
-        .mobile-nav-menu.active {
-            right: 0;
-        }
+      /* Header icons spacing */
+      .gap-3 {
+        gap: 5rem !important;
+      }
 
-        .mobile-nav-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+      /* Video Section Styles */
+      .video-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
-        .mobile-nav-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--text-color);
-        }
+      .video-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      }
 
-        .mobile-nav-content {
-            padding: 1rem;
-        }
+      .video-container video {
+        border-radius: 15px;
+        max-height: 300px;
+        object-fit: cover;
+      }
 
-        .mobile-nav-section {
-            margin-bottom: 2rem;
-        }
-
-        .mobile-nav-section h3 {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--light-text-color);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            letter-spacing: 0.05em;
-        }
-
-        .mobile-nav-link {
-            display: block;
-            padding: 0.75rem 0;
-            color: var(--text-color);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid #f3f4f6;
-            transition: color 0.2s ease;
-        }
-
-        .mobile-nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .mobile-nav-link:last-child {
-            border-bottom: none;
-        }
-
-        /* Mobile header spacing */
-        @media (max-width: 768px) {
-            .header-main {
-                padding: 0.75rem 0;
-            }
-
-            .header-main .row > div {
-                margin-bottom: 0;
-            }
-
-            /* Ensure proper spacing between logo and icons */
-            .col-6:first-child {
-                padding-right: 0.5rem;
-            }
-
-            .col-6:last-child {
-                padding-left: 0.5rem;
-            }
-
-            /* Search bar full width on mobile */
-            .col-12.d-flex.justify-content-center {
-                padding: 0 0.5rem;
-            }
-        }
-
-        .header-main .container-fluid {
-            padding-left: 2rem;
-            padding-right: 2rem;
-            overflow: visible;
-        }
-
-        /* Ensure header row allows dropdown overflow */
-        .header-main .row {
-            overflow: visible;
-        }
-
-        /* Ensure profile column allows dropdown overflow */
-        .header-main .col-lg-3:last-child {
-            overflow: visible !important;
-        }
-
-        <!-- .social-icons a {
-            color: var(--text-color);
-            margin-right: 1rem;
-            font-size: 1.2rem;
-        } -->
-
-        .header-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 0 0.8rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .input-group .form-control {
-            border-radius: 25px 0 0 25px !important;
-            border-right: none !important;
-            padding: 0.75rem 1rem;
-            font-size: 0.9rem;
-            border: 1px solid #ced4da;
-        }
-        .input-group .btn {
-            border-radius: 0 25px 25px 0 !important;
-            border-left: none !important;
-            padding: 0.75rem 1.25rem;
-            border: 1px solid #343a40;
-        }
-
-        /* Ensure no conflicting border radius */
-        .input-group .form-control:focus {
-            border-radius: 25px 0 0 25px !important;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-        }
-
-        .input-group .btn:focus {
-            border-radius: 0 25px 25px 0 !important;
-        }
-
-        .input-group {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-radius: 25px !important;
-            overflow: hidden;
-        }
-
-        /* Override Bootstrap input-group defaults */
-        .input-group > .form-control:not(:last-child) {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-        }
-
-        .input-group > .btn:not(:first-child) {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-        }
-
-        /* Header icons spacing */
-        .gap-3 {
-            gap: 5rem !important;
-        }
-
-        /* Video Section Styles */
-        .video-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .video-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-        }
-
-        .video-container video {
-            border-radius: 15px;
-            max-height: 300px;
-            object-fit: cover;
-        }
-
-   
-
-        .about-section h2 {
+      .about-section h2 {
         color: #8b0051 !important;
-        }
-        .about-section p {
+      }
+      .about-section p {
         font-size: 1.05rem;
         line-height: 1.7;
-        }
-        @media (max-width: 991px) {
+      }
+      @media (max-width: 991px) {
         .about-section .position-absolute {
-            position: static !important;
-            transform: none !important;
-            margin-top: 1rem;
+          position: static !important;
+          transform: none !important;
+          margin-top: 1rem;
         }
-        }
+      }
 
-        /* Footer Logo Styling */
+      /* Footer Logo Styling */
 
-        .footer-logo {
-            border-radius: 35px !important;
-            transition: transform 0.3s ease;
-        }
+      .footer-logo {
+        border-radius: 35px !important;
+        transition: transform 0.3s ease;
+      }
 
-        .footer-logo:hover {
-            transform: scale(1.05);
-        }
+      .footer-logo:hover {
+        transform: scale(1.05);
+      }
 
-        /* Category Section Styles */
-        .category-section {
-            background: #f8f9fa;
-        }
+      /* Category Section Styles */
+      .category-section {
+        background: #f8f9fa;
+      }
 
-        .category-carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
+      .category-carousel-container {
+        position: relative;
+        overflow: hidden;
+      }
 
-        .category-carousel {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding: 10px 0;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE and Edge */
-            justify-content: center;
-            align-items: center;
-        }
+      .category-carousel {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 10px 0;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        justify-content: center;
+        align-items: center;
+      }
 
-        .category-carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
+      .category-carousel::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
 
-        .category-item {
-            flex: 0 0 auto;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+      .category-item {
+        flex: 0 0 auto;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
 
-        .category-item:hover {
-            transform: translateY(-5px);
-        }
+      .category-item:hover {
+        transform: translateY(-5px);
+      }
 
+      .category-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .category-image:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .category-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .category-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-color);
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .carousel-nav-btn {
+        width: 35px;
+        height: 35px;
+        border: none;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .carousel-nav-btn:hover {
+        background: var(--primary-color);
+        color: #fff;
+        transform: scale(1.1);
+      }
+
+      .carousel-nav-btn i {
+        font-size: 0.9rem;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
         .category-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .category-image:hover {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        .category-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+          width: 70px;
+          height: 70px;
         }
 
         .category-name {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-color);
-            margin: 0;
-            white-space: nowrap;
+          font-size: 0.8rem;
         }
 
         .carousel-nav-btn {
-            width: 35px;
-            height: 35px;
-            border: none;
-            border-radius: 50%;
-            background: #fff;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
+          display: none;
+        }
+      }
+
+      .icon-link {
+        font-size: 1.5rem;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .icon-link:hover {
+        color: var(--primary-color);
+      }
+
+      /* Profile Dropdown Styles */
+      .profile-dropdown {
+        position: relative;
+        display: inline-block;
+        z-index: 99999;
+      }
+
+      /* Ensure dropdown container allows overflow */
+      .profile-dropdown,
+      .profile-dropdown * {
+        overflow: visible !important;
+      }
+
+      .profile-dropdown * {
+        box-sizing: border-box;
+      }
+
+      .profile-dropdown .dropdown-trigger {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem;
+        border-radius: 50px;
+        transition: all 0.2s ease;
+      }
+
+      .profile-dropdown .dropdown-trigger:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      .profile-dropdown .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+        overflow: hidden;
+      }
+
+      .profile-dropdown .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .profile-dropdown .chevron {
+        opacity: 0.6;
+        transition: transform 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .profile-dropdown:hover .chevron,
+      .profile-dropdown.show .chevron {
+        transform: rotate(180deg);
+      }
+
+      .profile-dropdown .dropdown-content {
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        background: white;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        min-width: 256px;
+        max-width: 256px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px) scale(0.95);
+        transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 999999 !important;
+        padding: 0.25rem;
+      }
+
+      .profile-dropdown:hover .dropdown-content,
+      .profile-dropdown.show .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+
+      .profile-dropdown .dropdown-label {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        padding: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .profile-dropdown .user-name {
+        font-weight: 500;
+        color: var(--text-color);
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .profile-dropdown .user-email {
+        color: var(--light-text-color);
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .profile-dropdown .dropdown-separator {
+        height: 1px;
+        background-color: #e5e7eb;
+        margin: 0.25rem 0;
+      }
+
+      .profile-dropdown .dropdown-group {
+        padding: 0.25rem 0;
+      }
+
+      .profile-dropdown .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+        border: none;
+        background: none;
+        width: 100%;
+        text-align: left;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        cursor: pointer;
+      }
+
+      .profile-dropdown .dropdown-item:hover {
+        background-color: #f3f4f6;
+      }
+
+      .profile-dropdown .dropdown-item i {
+        font-size: 1rem;
+        width: 16px;
+        height: 16px;
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+
+      .navbar-categories {
+        background: var(--gradient-3);
+        padding: 0.5rem 0;
+        box-shadow: 0 6px 20px rgba(142, 36, 170, 0.15);
+      }
+
+      .navbar-categories .container-fluid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .navbar-categories .nav-link {
+        color: #fff;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        position: relative;
+        transition: color 0.2s ease;
+      }
+      .navbar-categories .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        width: 0;
+        height: 2px;
+        background: #fff;
+        transition: all 0.25s ease;
+        transform: translateX(-50%);
+        opacity: 0.85;
+      }
+      .navbar-categories .nav-link:hover::after {
+        width: 60%;
+      }
+
+      .navbar-categories .nav-link.offers-btn {
+        background: var(--gradient-2);
+        color: #000;
+        border-radius: 20px;
+        box-shadow: 0 6px 16px rgba(255, 111, 97, 0.35);
+      }
+
+      .navbar-brand img {
+        max-height: 100px;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: #ffffff;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+      }
+
+      /* Fix for mobile overflow */
+      @media (max-width: 768px) {
+        .hero-section {
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+      .hero-section::before,
+      .hero-section::after {
+        content: "";
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        filter: blur(30px);
+        opacity: 0.35;
+        animation: float 10s ease-in-out infinite;
+      }
+      .hero-section::before {
+        background: #ffffff;
+        top: -40px;
+        left: -40px;
+      }
+      .hero-section::after {
+        background: transparent;
+        bottom: -40px;
+        right: -40px;
+        animation-delay: 2s;
+      }
+
+      .hero-section .carousel-item img {
+        height: 60vh;
+        min-height: 400px;
+        object-fit: cover;
+        width: 100%;
+        background-color: #f8f9fa;
+      }
+
+      .hero-section img {
+        height: 500px;
+        object-fit: cover;
+      }
+
+      .hero-section .carousel {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+      }
+
+      /* Smooth hardware acceleration for better performance */
+      .hero-section .carousel-inner,
+      .hero-section .carousel-item {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+      }
+
+      .hero-section .carousel-inner {
+        width: 100%;
+      }
+
+      /* Custom Carousel Arrow Styles */
+      .hero-section .carousel-control-prev,
+      .hero-section .carousel-control-next {
+        width: 50px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.3s ease;
+        opacity: 0.7;
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-section .carousel-control-prev:hover,
+      .hero-section .carousel-control-next:hover {
+        background: rgba(255, 255, 255, 0.2);
+        opacity: 1;
+      }
+
+      .hero-section .carousel-control-prev {
+        left: 0;
+        border-radius: 0 25px 25px 0;
+      }
+
+      .hero-section .carousel-control-next {
+        right: 0;
+        border-radius: 25px 0 0 25px;
+      }
+
+      .hero-section .carousel-control-prev-icon,
+      .hero-section .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+      }
+
+      .hero-section .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/%3e%3c/svg%3e");
+      }
+
+      .hero-section .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3e%3c/svg%3e");
+      }
+
+      /* Custom Carousel Sliding Animation */
+      .hero-section .carousel-inner {
+        overflow: hidden;
+      }
+
+      .hero-section .carousel-item {
+        transition: transform 0.8s ease-in-out;
+      }
+
+      /* Smooth sliding transitions */
+      .hero-section .carousel-item-next,
+      .hero-section .carousel-item-prev {
+        display: block;
+      }
+
+      .hero-section .carousel-item-next:not(.carousel-item-start),
+      .hero-section .active.carousel-item-end {
+        transform: translateX(100%);
+      }
+
+      .hero-section .carousel-item-prev:not(.carousel-item-end),
+      .hero-section .active.carousel-item-start {
+        transform: translateX(-100%);
+      }
+
+      /* Enhanced sliding effect with easing */
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-section .carousel-item {
+          transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+      }
+
+      /* Additional smooth sliding when actively transitioning */
+      .hero-section .carousel.sliding .carousel-item {
+        transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      /* Prevent flickering during transitions */
+      .hero-section .carousel-item img {
+        will-change: transform;
+        transform: translateZ(0);
+      }
+
+      /* Carousel Progress Bars Styles */
+      .carousel-progress-bars {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+      }
+
+      .progress-bar-item {
+        width: 60px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .progress-bar-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          var(--primary-color),
+          var(--accent-color)
+        );
+        border-radius: 2px;
+        transition: width 0.1s linear;
+      }
+
+      .progress-bar-item.active::before {
+        animation: progressFill 5s linear forwards;
+      }
+
+      .progress-bar-item.completed::before {
+        width: 100%;
+      }
+
+      @keyframes progressFill {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* Chat Widget Styles */
+      .chat-widget {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10000;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .chat-button {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(166, 12, 108, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+      }
+
+      .chat-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(166, 12, 108, 0.4);
+      }
+
+      .chat-button.active {
+        background: #333;
+      }
+
+      .chat-button i {
+        color: white;
+        font-size: 24px;
+      }
+
+      /* WhatsApp Icon Overlay */
+      .whatsapp-overlay {
+        position: absolute;
+        bottom: -8px;
+        left: -8px;
+        width: 28px;
+        height: 28px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1001;
+        border: 2px solid white;
+      }
+
+      .whatsapp-overlay:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.5);
+      }
+
+      .whatsapp-overlay i {
+        color: white;
+        font-size: 14px;
+      }
+
+      /* Standalone WhatsApp Button */
+      .whatsapp-standalone {
+        position: fixed;
+        top: 79%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        animation: pulse 2s infinite;
+      }
+
+      .whatsapp-standalone:hover {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+      }
+
+      .whatsapp-standalone i {
+        color: white;
+        font-size: 28px;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+        50% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0.1);
+        }
+        100% {
+          box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+      }
+
+      .chat-notification {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ff4444;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .chat-window {
+        position: absolute;
+        bottom: 80px;
+        right: 0;
+        width: 350px;
+        height: 450px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px) scale(0.9);
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .chat-window.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+      }
+
+      .chat-header {
+        background: var(--primary-color);
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .chat-header-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .chat-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: white;
+        padding: 2px;
+      }
+
+      .chat-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .chat-details h6 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .chat-status {
+        font-size: 12px;
+        opacity: 0.9;
+      }
+
+      .chat-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: background 0.2s ease;
+      }
+
+      .chat-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .chat-messages {
+        height: 320px;
+        overflow-y: auto;
+        padding: 20px;
+        background: #f8f9fa;
+      }
+
+      .message {
+        display: flex;
+        margin-bottom: 15px;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .user-message {
+        justify-content: flex-end;
+      }
+
+      .user-message .message-content {
+        background: var(--primary-color);
+        color: white;
+        margin-left: 50px;
+      }
+
+      .bot-message .message-content {
+        background: white;
+        color: #333;
+        margin-right: 50px;
+      }
+
+      .message-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: white;
+        padding: 2px;
+        flex-shrink: 0;
+      }
+
+      .message-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .message-content {
+        max-width: 250px;
+        padding: 12px 15px;
+        border-radius: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .message-content p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .message-time {
+        font-size: 11px;
+        opacity: 0.7;
+        margin-top: 5px;
+        display: block;
+      }
+
+      .chat-input-container {
+        padding: 15px 20px;
+        background: white;
+        border-top: 1px solid #eee;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .chat-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 25px;
+        padding: 10px 15px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .chat-input:focus {
+        border-color: var(--primary-color);
+      }
+
+      .chat-send {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-color);
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+      }
+
+      .chat-send:hover {
+        background: #8e0a5c;
+        transform: scale(1.05);
+      }
+
+      /* Mobile Chat Widget */
+      @media (max-width: 768px) {
+        .chat-widget {
+          bottom: 15px;
+          right: 15px;
         }
 
-        .carousel-nav-btn:hover {
-            background: var(--primary-color);
-            color: #fff;
-            transform: scale(1.1);
+        .chat-button {
+          width: 55px;
+          height: 55px;
         }
 
-        .carousel-nav-btn i {
-            font-size: 0.9rem;
+        .chat-button i {
+          font-size: 22px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .category-image {
-                width: 70px;
-                height: 70px;
-            }
-
-            .category-name {
-                font-size: 0.8rem;
-            }
-
-            .carousel-nav-btn {
-                display: none;
-            }
+        .whatsapp-overlay {
+          width: 24px;
+          height: 24px;
+          bottom: -6px;
+          left: -6px;
         }
 
-        .icon-link {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .whatsapp-overlay i {
+          font-size: 12px;
         }
 
-        .icon-link:hover {
-            color: var(--primary-color);
+        /* Standalone WhatsApp Button */
+        .whatsapp-standalone {
+          position: fixed;
+          top: 65%;
+          right: 15px;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 50px;
         }
 
-        /* Profile Dropdown Styles */
-        .profile-dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 99999;
+        .whatsapp-standalone i {
+          font-size: 24px;
         }
 
-        /* Ensure dropdown container allows overflow */
-        .profile-dropdown,
-        .profile-dropdown * {
-            overflow: visible !important;
+        .chat-window {
+          width: 300px;
+          height: 400px;
+          bottom: 75px;
         }
 
-        .profile-dropdown * {
-            box-sizing: border-box;
+        .chat-messages {
+          height: 270px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .chat-window {
+          width: 280px;
+          right: -10px;
         }
 
-        .profile-dropdown .dropdown-trigger {
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.25rem;
-            border-radius: 50px;
-            transition: all 0.2s ease;
+        .message-content {
+          max-width: 200px;
         }
+      }
 
-        .profile-dropdown .dropdown-trigger:hover {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .profile-dropdown .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.875rem;
-            overflow: hidden;
-        }
-
-        .profile-dropdown .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-dropdown .chevron {
-            opacity: 0.6;
-            transition: transform 0.2s ease;
-            font-size: 0.875rem;
-        }
-
-        .profile-dropdown:hover .chevron,
-        .profile-dropdown.show .chevron {
-            transform: rotate(180deg);
-        }
-
-        .profile-dropdown .dropdown-content {
-            position: absolute;
-            top: calc(100% + 0.5rem);
-            right: 0;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            min-width: 256px;
-            max-width: 256px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px) scale(0.95);
-            transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 999999 !important;
-            padding: 0.25rem;
-        }
-
-        .profile-dropdown:hover .dropdown-content,
-        .profile-dropdown.show .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .profile-dropdown .dropdown-label {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
-            padding: 0.75rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .profile-dropdown .user-name {
-            font-weight: 500;
-            color: var(--text-color);
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .profile-dropdown .user-email {
-            color: var(--light-text-color);
-            font-size: 0.75rem;
-            line-height: 1rem;
-            font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .profile-dropdown .dropdown-separator {
-            height: 1px;
-            background-color: #e5e7eb;
-            margin: 0.25rem 0;
-        }
-
-        .profile-dropdown .dropdown-group {
-            padding: 0.25rem 0;
-        }
-
-        .profile-dropdown .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0.75rem;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: background-color 0.15s ease;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            line-height: 1.25rem;
-            cursor: pointer;
-        }
-
-        .profile-dropdown .dropdown-item:hover {
-            background-color: #f3f4f6;
-        }
-
-        .profile-dropdown .dropdown-item i {
-            font-size: 1rem;
-            width: 16px;
-            height: 16px;
-            opacity: 0.6;
-            flex-shrink: 0;
-        }
-        
-        .navbar-categories {
-            background: var(--gradient-3);
-            padding: 0.5rem 0;
-            box-shadow: 0 6px 20px rgba(142, 36, 170, 0.15);
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        .header-main .container-fluid {
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
         }
 
         .navbar-categories .container-fluid {
-            padding-left: 2rem;
-            padding-right: 2rem;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        /* Mobile header layout improvements */
+        .header-main {
+          padding: 1rem 0;
+        }
+
+        .header-main .row {
+          align-items: center;
+          margin: 0;
+        }
+
+        /* Logo styling for mobile */
+        .navbar-brand img {
+          max-height: 50px;
+          width: auto;
+        }
+
+        .col-lg-2.col-md-3.col-6 {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+
+        /* Mobile icons container - better spacing and alignment */
+        .col-6.d-flex.d-md-none {
+          gap: 1rem;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+          align-items: center;
+          justify-content: flex-end;
+        }
+
+        /* Mobile profile dropdown adjustments */
+        .profile-dropdown .avatar {
+          width: 32px;
+          height: 32px;
+          font-size: 0.8rem;
+        }
+
+        .profile-dropdown .dropdown-content {
+          right: -10px;
+          min-width: 240px;
+          max-width: 240px;
+        }
+
+        /* Mobile cart icon */
+        .icon-link {
+          font-size: 1.4rem;
+          padding: 0.5rem;
+          color: var(--text-color);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Hamburger menu mobile styling */
+        .hamburger-menu {
+          display: flex;
+          padding: 0.5rem;
+          margin-left: 0.5rem;
+        }
+
+        .hamburger-line {
+          width: 20px;
+          height: 2px;
+        }
+
+        /* Mobile search bar styling */
+        .mobile-search-bar {
+          width: 100%;
+          margin-top: 1rem;
+          max-width: 100% !important;
+        }
+
+        .mobile-search-bar .form-control {
+          font-size: 0.9rem;
+          padding: 0.6rem 0.75rem;
+        }
+
+        .mobile-search-bar .btn {
+          padding: 0.6rem 0.75rem;
+        }
+
+        /* Ensure proper spacing between rows */
+        .header-main .row:first-child {
+          margin-bottom: 0;
+        }
+
+        .header-main .row:last-child {
+          margin-top: 0.5rem;
+        }
+
+        /* Mobile video styling */
+        .video-container video {
+          max-height: 250px;
+        }
+
+        .header-links {
+          justify-content: center !important;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .header-links a {
+          font-size: 0.85rem;
+          padding: 0.3rem 0.6rem;
+        }
+
+        .navbar-categories .nav {
+          flex-wrap: wrap;
+          justify-content: center;
         }
 
         .navbar-categories .nav-link {
-            color: #fff;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            position: relative;
-            transition: color 0.2s ease;
-        }
-        .navbar-categories .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 4px;
-            width: 0;
-            height: 2px;
-            background: #fff;
-            transition: all 0.25s ease;
-            transform: translateX(-50%);
-            opacity: 0.85;
-        }
-        .navbar-categories .nav-link:hover::after {
-            width: 60%;
-        }
-        
-        .navbar-categories .nav-link.offers-btn {
-            background: var(--gradient-2);
-            color: #000;
-            border-radius: 20px;
-            box-shadow: 0 6px 16px rgba(255, 111, 97, 0.35);
-        }
-
-        .navbar-brand img {
-            max-height: 100px;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: #ffffff;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
-            margin-right: calc(-50vw + 50%);
-        }
-        
-        /* Fix for mobile overflow */
-        @media (max-width: 768px) {
-            .hero-section {
-                width: 100%;
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-        .hero-section::before, .hero-section::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            filter: blur(30px);
-            opacity: 0.35;
-            animation: float 10s ease-in-out infinite;
-        }
-        .hero-section::before {
-            background: #ffffff;
-            top: -40px;
-            left: -40px;
-        }
-        .hero-section::after {
-            background: transparent;
-            bottom: -40px;
-            right: -40px;
-            animation-delay: 2s;
+          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
         }
 
         .hero-section .carousel-item img {
-            height: 60vh;
-            min-height: 400px;
-            object-fit: cover;
-            width: 100%;
-            background-color: #f8f9fa;
+          height: 40vh;
+          min-height: 250px;
+          object-fit: contain;
+          background-color: #f8f9fa;
         }
 
-        .hero-section img {
-            height: 500px;
-            object-fit: cover;
-        }
-
-        .hero-section .carousel {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            position: relative;
-        }
-
-        /* Smooth hardware acceleration for better performance */
-        .hero-section .carousel-inner,
-        .hero-section .carousel-item {
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-
-        .hero-section .carousel-inner {
-            width: 100%;
-        }
-
-        /* Custom Carousel Arrow Styles */
+        /* Mobile carousel arrows */
         .hero-section .carousel-control-prev,
         .hero-section .carousel-control-next {
-            width: 50px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
-            opacity: 0.7;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-section .carousel-control-prev:hover,
-        .hero-section .carousel-control-next:hover {
-            background: rgba(255, 255, 255, 0.2);
-            opacity: 1;
+          width: 40px;
+          height: 60px;
         }
 
         .hero-section .carousel-control-prev {
-            left: 0;
-            border-radius: 0 25px 25px 0;
+          left: 0;
+          border-radius: 0 20px 20px 0;
         }
 
         .hero-section .carousel-control-next {
-            right: 0;
-            border-radius: 25px 0 0 25px;
+          right: 0;
+          border-radius: 20px 0 0 20px;
         }
 
         .hero-section .carousel-control-prev-icon,
         .hero-section .carousel-control-next-icon {
-            width: 20px;
-            height: 20px;
-            background-size: 20px 20px;
+          width: 16px;
+          height: 16px;
+          background-size: 16px 16px;
         }
 
-        .hero-section .carousel-control-prev-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z'/%3e%3c/svg%3e");
-        }
-
-        .hero-section .carousel-control-next-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath d='m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z'/%3e%3c/svg%3e");
-        }
-
-
-
-        /* Custom Carousel Sliding Animation */
-        .hero-section .carousel-inner {
-            overflow: hidden;
-        }
-
-        .hero-section .carousel-item {
-            transition: transform 0.8s ease-in-out;
-        }
-
-        /* Smooth sliding transitions */
-        .hero-section .carousel-item-next,
-        .hero-section .carousel-item-prev {
-            display: block;
-        }
-
-        .hero-section .carousel-item-next:not(.carousel-item-start),
-        .hero-section .active.carousel-item-end {
-            transform: translateX(100%);
-        }
-
-        .hero-section .carousel-item-prev:not(.carousel-item-end),
-        .hero-section .active.carousel-item-start {
-            transform: translateX(-100%);
-        }
-
-        /* Enhanced sliding effect with easing */
-        @media (prefers-reduced-motion: no-preference) {
-            .hero-section .carousel-item {
-                transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
-        }
-
-        /* Additional smooth sliding when actively transitioning */
-        .hero-section .carousel.sliding .carousel-item {
-            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* Prevent flickering during transitions */
-        .hero-section .carousel-item img {
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        /* Carousel Progress Bars Styles */
+        /* Mobile progress bars */
         .carousel-progress-bars {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 10;
+          bottom: 15px;
+          gap: 6px;
         }
 
         .progress-bar-item {
-            width: 60px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
+          width: 50px;
+          height: 3px;
         }
 
-        .progress-bar-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-            transition: width 0.1s linear;
-        }
-
-        .progress-bar-item.active::before {
-            animation: progressFill 5s linear forwards;
-        }
-
-        .progress-bar-item.completed::before {
-            width: 100%;
-        }
-
-        @keyframes progressFill {
-            from { width: 0%; }
-            to { width: 100%; }
-        }
-
-        /* Chat Widget Styles */
-        .chat-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .chat-button {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(166, 12, 108, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .chat-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(166, 12, 108, 0.4);
-        }
-
-        .chat-button.active {
-            background: #333;
-        }
-
-        .chat-button i {
-            color: white;
-            font-size: 24px;
-        }
-
-        .chat-notification {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff4444;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .chat-window {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 350px;
-            height: 450px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px) scale(0.9);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .chat-window.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .chat-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .chat-header-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .chat-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: white;
-            padding: 2px;
-        }
-
-        .chat-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .chat-details h6 {
-            margin: 0;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .chat-status {
-            font-size: 12px;
-            opacity: 0.9;
-        }
-
-        .chat-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            transition: background 0.2s ease;
-        }
-
-        .chat-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .chat-messages {
-            height: 320px;
-            overflow-y: auto;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-
-        .message {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .user-message {
-            justify-content: flex-end;
-        }
-
-        .user-message .message-content {
-            background: var(--primary-color);
-            color: white;
-            margin-left: 50px;
-        }
-
-        .bot-message .message-content {
-            background: white;
-            color: #333;
-            margin-right: 50px;
-        }
-
-        .message-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            overflow: hidden;
-            background: white;
-            padding: 2px;
-            flex-shrink: 0;
-        }
-
-        .message-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-
-        .message-content {
-            max-width: 250px;
-            padding: 12px 15px;
-            border-radius: 15px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .message-content p {
-            margin: 0;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .message-time {
-            font-size: 11px;
-            opacity: 0.7;
-            margin-top: 5px;
-            display: block;
-        }
-
-        .chat-input-container {
-            padding: 15px 20px;
-            background: white;
-            border-top: 1px solid #eee;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .chat-input {
-            flex: 1;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            padding: 10px 15px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s ease;
-        }
-
-        .chat-input:focus {
-            border-color: var(--primary-color);
-        }
-
-        .chat-send {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .chat-send:hover {
-            background: #8e0a5c;
-            transform: scale(1.05);
-        }
-
-        /* Mobile Chat Widget */
-        @media (max-width: 768px) {
-            .chat-widget {
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .chat-button {
-                width: 55px;
-                height: 55px;
-            }
-
-            .chat-button i {
-                font-size: 22px;
-            }
-
-            .chat-window {
-                width: 300px;
-                height: 400px;
-                bottom: 75px;
-            }
-
-            .chat-messages {
-                height: 270px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .chat-window {
-                width: 280px;
-                right: -10px;
-            }
-
-            .message-content {
-                max-width: 200px;
-            }
-        }
-
-
-
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-            .header-main .container-fluid {
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
-            }
-
-            .navbar-categories .container-fluid {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-
-            /* Mobile header layout improvements */
-            .header-main {
-                padding: 1rem 0;
-            }
-
-            .header-main .row {
-                align-items: center;
-                margin: 0;
-            }
-
-            /* Logo styling for mobile */
-            .navbar-brand img {
-                max-height: 50px;
-                width: auto;
-            }
-
-            .col-lg-2.col-md-3.col-6 {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-
-            /* Mobile icons container - better spacing and alignment */
-            .col-6.d-flex.d-md-none {
-                gap: 1rem;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                align-items: center;
-                justify-content: flex-end;
-            }
-
-            /* Mobile profile dropdown adjustments */
-            .profile-dropdown .avatar {
-                width: 32px;
-                height: 32px;
-                font-size: 0.8rem;
-            }
-
-            .profile-dropdown .dropdown-content {
-                right: -10px;
-                min-width: 240px;
-                max-width: 240px;
-            }
-
-            /* Mobile cart icon */
-            .icon-link {
-                font-size: 1.4rem;
-                padding: 0.5rem;
-                color: var(--text-color);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            /* Hamburger menu mobile styling */
-            .hamburger-menu {
-                display: flex;
-                padding: 0.5rem;
-                margin-left: 0.5rem;
-            }
-
-            .hamburger-line {
-                width: 20px;
-                height: 2px;
-            }
-
-            /* Mobile search bar styling */
-            .mobile-search-bar {
-                width: 100%;
-                margin-top: 1rem;
-                max-width: 100% !important;
-            }
-
-            .mobile-search-bar .form-control {
-                font-size: 0.9rem;
-                padding: 0.6rem 0.75rem;
-            }
-
-            .mobile-search-bar .btn {
-                padding: 0.6rem 0.75rem;
-            }
-
-            /* Ensure proper spacing between rows */
-            .header-main .row:first-child {
-                margin-bottom: 0;
-            }
-
-            .header-main .row:last-child {
-                margin-top: 0.5rem;
-            }
-
-            /* Mobile video styling */
-            .video-container video {
-                max-height: 250px;
-            }
-
-            .header-links {
-                justify-content: center !important;
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-
-            .header-links a {
-                font-size: 0.85rem;
-                padding: 0.3rem 0.6rem;
-            }
-
-            .navbar-categories .nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .navbar-categories .nav-link {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .hero-section .carousel-item img {
-                height: 40vh;
-                min-height: 250px;
-                object-fit: contain;
-                background-color: #f8f9fa;
-            }
-
-            /* Mobile carousel arrows */
-            .hero-section .carousel-control-prev,
-            .hero-section .carousel-control-next {
-                width: 40px;
-                height: 60px;
-            }
-
-            .hero-section .carousel-control-prev {
-                left: 0;
-                border-radius: 0 20px 20px 0;
-            }
-
-            .hero-section .carousel-control-next {
-                right: 0;
-                border-radius: 20px 0 0 20px;
-            }
-
-            .hero-section .carousel-control-prev-icon,
-            .hero-section .carousel-control-next-icon {
-                width: 16px;
-                height: 16px;
-                background-size: 16px 16px;
-            }
-
-            /* Mobile progress bars */
-            .carousel-progress-bars {
-                bottom: 15px;
-                gap: 6px;
-            }
-
-            .progress-bar-item {
-                width: 50px;
-                height: 3px;
-            }
-
-
-
-
-
-            .info-bar .row {
-                text-align: center;
-            }
-
-            .info-item {
-                font-size: 0.8rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .product-card {
-                margin-bottom: 1.5rem;
-            }
-
-            .product-card .card-img-top {
-                height: 180px;
-            }
-
-            .bestseller-tag {
-                font-size: 0.7rem;
-                padding: 0.2rem 0.5rem;
-            }
-        }
-
-        /* Small Mobile Devices */
-        @media (max-width: 480px) {
-            .header-main {
-                padding: 0.75rem 0;
-            }
-
-            .navbar-brand img {
-                max-height: 45px;
-            }
-
-            /* Tighter spacing for small screens */
-            .col-6.d-flex.d-md-none {
-                gap: 0.75rem;
-            }
-
-            .profile-dropdown .avatar {
-                width: 28px;
-                height: 28px;
-                font-size: 0.75rem;
-            }
-
-            .icon-link {
-                font-size: 1.2rem;
-                padding: 0.4rem;
-            }
-
-            .hamburger-menu {
-                padding: 0.4rem;
-            }
-
-            .hamburger-line {
-                width: 18px;
-                height: 2px;
-            }
-
-            .header-nav {
-                gap: 0.5rem !important;
-                flex-wrap: wrap;
-            }
-
-            .nav-link-header {
-                font-size: 0.8rem;
-                padding: 0.2rem 0;
-            }
-
-            .hero-section .carousel-item img {
-                height: 30vh;
-                min-height: 200px;
-                object-fit: contain;
-                background-color: #f8f9fa;
-            }
-
-            /* Small mobile carousel arrows */
-            .hero-section .carousel-control-prev,
-            .hero-section .carousel-control-next {
-                width: 35px;
-                height: 50px;
-            }
-
-            .hero-section .carousel-control-prev {
-                left: 0;
-                border-radius: 0 15px 15px 0;
-            }
-
-            .hero-section .carousel-control-next {
-                right: 0;
-                border-radius: 15px 0 0 15px;
-            }
-
-            .hero-section .carousel-control-prev-icon,
-            .hero-section .carousel-control-next-icon {
-                width: 14px;
-                height: 14px;
-                background-size: 14px 14px;
-            }
-
-            /* Small mobile progress bars */
-            .carousel-progress-bars {
-                bottom: 12px;
-                gap: 4px;
-            }
-
-            .progress-bar-item {
-                width: 40px;
-                height: 2px;
-            }
-
-
-
-            .info-bar .col {
-                margin-bottom: 0.5rem;
-            }
-
-            .info-item {
-                font-size: 0.75rem;
-            }
-
-            .product-card .card-img-top {
-                height: 150px;
-            }
-
-            .card-title {
-                font-size: 1rem;
-            }
-
-            .card-text {
-                font-size: 0.9rem;
-            }
-
-            .btn {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .navbar-categories .nav-link {
-                font-size: 0.75rem;
-                padding: 0.3rem 0.6rem;
-            }
-        }
-
-        /* Tablet Styles */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .navbar-brand img {
-                max-height: 80px;
-            }
-
-            .hero-section .carousel-item img {
-                height: 50vh;
-                min-height: 350px;
-                object-fit: contain;
-                background-color: #f8f9fa;
-            }
-
-            .product-card .card-img-top {
-                height: 200px;
-            }
-        }
-
-        /* Additional Mobile Improvements */
-        @media (max-width: 768px) {
-            .container, .container-fluid {
-                padding-left: 15px;
-                padding-right: 15px;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-
-            .row {
-                margin-left: -10px;
-                margin-right: -10px;
-            }
-
-            .col, .col-md-4, .col-lg-3 {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-
-            /* Hero section mobile fix already handled above */
-
-            .social-links {
-                justify-content: center !important;
-                margin-bottom: 1rem;
-            }
-
-            .social-links a {
-                margin: 0 0.5rem;
-            }
-
-            /* Mobile header layout adjustments */
-            .header-main .row:first-child > div {
-                margin-bottom: 1rem;
-            }
-
-            .header-main .row:first-child > div:last-child {
-                margin-bottom: 0;
-            }
-
-            .input-group {
-                margin-bottom: 1rem;
-            }
-        }
-
-        /* Fix for very small screens */
-        @media (max-width: 320px) {
-            .navbar-categories .nav-link {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.4rem;
-            }
-
-            .info-item {
-                font-size: 0.7rem;
-            }
-
-            .card-title {
-                font-size: 0.9rem;
-            }
-        }
-
-        .info-bar {
-            background-color: #fff;
-            border-radius: 10px;
+        .info-bar .row {
+          text-align: center;
         }
 
         .info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            font-weight: 500;
-            font-size: 0.95rem;
+          font-size: 0.8rem;
+          margin-bottom: 0.5rem;
         }
 
-        .info-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        .info-item i {
-            animation: pulse 2.5s ease-in-out infinite;
-        }
-
-        /* Section Styles */
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Product Card */
         .product-card {
-            border: 1px solid #eee;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 2rem;
-            text-align: center;
-            background: #fff;
+          margin-bottom: 1.5rem;
         }
 
-        .product-card:hover {
-            transform: translateY(-6px) rotate3d(1, 1, 0, 2deg);
-            box-shadow: 0 14px 30px rgba(90, 12, 107, 0.18);
-        }
-        
         .product-card .card-img-top {
-            height: 220px;
-            object-fit: contain;
-            padding: 1rem;
-        }
-
-        .product-card .card-body {
-            padding: 1rem 1.5rem;
-        }
-
-        .product-card .card-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .product-card .card-text {
-            color: var(--light-text-color);
-            font-size: 1rem;
-            font-weight: 700;
-        }
-        
-        .product-card .btn {
-            background: var(--gradient-3);
-            color: #fff;
-            border-radius: 999px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-            border: 0;
-            box-shadow: 0 8px 18px rgba(0, 191, 165, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .product-card .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(0, 191, 165, 0.35);
+          height: 180px;
         }
 
         .bestseller-tag {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--gradient-2);
-            color: #111;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 5px;
-            box-shadow: 0 6px 16px rgba(255, 202, 40, 0.35);
+          font-size: 0.7rem;
+          padding: 0.2rem 0.5rem;
         }
-        
-        /* Footer */
-        .footer {
-            background: radial-gradient(1200px 600px at 80% -100%, rgba(255,255,255,0.08), transparent), var(--gradient-3);
-            color: #fff;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer h5 {
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer a {
-            color: #eee;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer a:hover {
-            color: #fff;
-            padding-left: 5px;
-        }
-        
-        .footer .list-unstyled li {
-            margin-bottom: 0.5rem;
+      }
+
+      /* Small Mobile Devices */
+      @media (max-width: 480px) {
+        .header-main {
+          padding: 0.75rem 0;
         }
 
-        .footer .social-icons a {
-            color: #fff;
-            font-size: 1.5rem;
-            margin-right: 1rem;
+        .navbar-brand img {
+          max-height: 45px;
         }
 
-        /* Simple keyframes */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.08); opacity: 0.9; }
+        /* Tighter spacing for small screens */
+        .col-6.d-flex.d-md-none {
+          gap: 0.75rem;
         }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-            100% { transform: translateY(0); }
+
+        .profile-dropdown .avatar {
+          width: 28px;
+          height: 28px;
+          font-size: 0.75rem;
         }
+
+        .icon-link {
+          font-size: 1.2rem;
+          padding: 0.4rem;
+        }
+
+        .hamburger-menu {
+          padding: 0.4rem;
+        }
+
+        .hamburger-line {
+          width: 18px;
+          height: 2px;
+        }
+
+        .header-nav {
+          gap: 0.5rem !important;
+          flex-wrap: wrap;
+        }
+
+        .nav-link-header {
+          font-size: 0.8rem;
+          padding: 0.2rem 0;
+        }
+
+        .hero-section .carousel-item img {
+          height: 30vh;
+          min-height: 200px;
+          object-fit: contain;
+          background-color: #f8f9fa;
+        }
+
+        /* Small mobile carousel arrows */
+        .hero-section .carousel-control-prev,
+        .hero-section .carousel-control-next {
+          width: 35px;
+          height: 50px;
+        }
+
+        .hero-section .carousel-control-prev {
+          left: 0;
+          border-radius: 0 15px 15px 0;
+        }
+
+        .hero-section .carousel-control-next {
+          right: 0;
+          border-radius: 15px 0 0 15px;
+        }
+
+        .hero-section .carousel-control-prev-icon,
+        .hero-section .carousel-control-next-icon {
+          width: 14px;
+          height: 14px;
+          background-size: 14px 14px;
+        }
+
+        /* Small mobile progress bars */
+        .carousel-progress-bars {
+          bottom: 12px;
+          gap: 4px;
+        }
+
+        .progress-bar-item {
+          width: 40px;
+          height: 2px;
+        }
+
+        .info-bar .col {
+          margin-bottom: 0.5rem;
+        }
+
+        .info-item {
+          font-size: 0.75rem;
+        }
+
+        .product-card .card-img-top {
+          height: 150px;
+        }
+
+        .card-title {
+          font-size: 1rem;
+        }
+
+        .card-text {
+          font-size: 0.9rem;
+        }
+
+        .btn {
+          font-size: 0.8rem;
+          padding: 0.4rem 0.8rem;
+        }
+
+        .navbar-categories .nav-link {
+          font-size: 0.75rem;
+          padding: 0.3rem 0.6rem;
+        }
+      }
+
+      /* Tablet Styles */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .navbar-brand img {
+          max-height: 80px;
+        }
+
+        .hero-section .carousel-item img {
+          height: 50vh;
+          min-height: 350px;
+          object-fit: contain;
+          background-color: #f8f9fa;
+        }
+
+        .product-card .card-img-top {
+          height: 200px;
+        }
+      }
+
+      /* Additional Mobile Improvements */
+      @media (max-width: 768px) {
+        .container,
+        .container-fluid {
+          padding-left: 15px;
+          padding-right: 15px;
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        .row {
+          margin-left: -10px;
+          margin-right: -10px;
+        }
+
+        .col,
+        .col-md-4,
+        .col-lg-3 {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        /* Hero section mobile fix already handled above */
+
+        .social-links {
+          justify-content: center !important;
+          margin-bottom: 1rem;
+        }
+
+        .social-links a {
+          margin: 0 0.5rem;
+        }
+
+        /* Mobile header layout adjustments */
+        .header-main .row:first-child > div {
+          margin-bottom: 1rem;
+        }
+
+        .header-main .row:first-child > div:last-child {
+          margin-bottom: 0;
+        }
+
+        .input-group {
+          margin-bottom: 1rem;
+        }
+      }
+
+      /* Fix for very small screens */
+      @media (max-width: 320px) {
+        .navbar-categories .nav-link {
+          font-size: 0.7rem;
+          padding: 0.25rem 0.4rem;
+        }
+
+        .info-item {
+          font-size: 0.7rem;
+        }
+
+        .card-title {
+          font-size: 0.9rem;
+        }
+      }
+
+      .info-bar {
+        background-color: #fff;
+        border-radius: 10px;
+      }
+
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      .info-item i {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+      .info-item i {
+        animation: pulse 2.5s ease-in-out infinite;
+      }
+
+      /* Section Styles */
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Product Card */
+      .product-card {
+        border: 1px solid #eee;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 2rem;
+        text-align: center;
+        background: #fff;
+      }
+
+      .product-card:hover {
+        transform: translateY(-6px) rotate3d(1, 1, 0, 2deg);
+        box-shadow: 0 14px 30px rgba(90, 12, 107, 0.18);
+      }
+
+      .product-card .card-img-top {
+        height: 220px;
+        object-fit: contain;
+        padding: 1rem;
+      }
+
+      .product-card .card-body {
+        padding: 1rem 1.5rem;
+      }
+
+      .product-card .card-title {
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .product-card .card-text {
+        color: var(--light-text-color);
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .product-card .btn {
+        background: var(--gradient-3);
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        border: 0;
+        box-shadow: 0 8px 18px rgba(0, 191, 165, 0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .product-card .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(0, 191, 165, 0.35);
+      }
+
+      .bestseller-tag {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: var(--gradient-2);
+        color: #111;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border-radius: 5px;
+        box-shadow: 0 6px 16px rgba(255, 202, 40, 0.35);
+      }
+
+      /* Footer */
+      .footer {
+        background: radial-gradient(
+            1200px 600px at 80% -100%,
+            rgba(255, 255, 255, 0.08),
+            transparent
+          ),
+          var(--gradient-3);
+        color: #fff;
+        padding: 4rem 0 2rem;
+      }
+
+      .footer h5 {
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer a {
+        color: #eee;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #fff;
+        padding-left: 5px;
+      }
+
+      .footer .list-unstyled li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer .social-icons a {
+        color: #fff;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+
+      /* Simple keyframes */
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.08);
+          opacity: 0.9;
+        }
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <div class="top-bar text-center">
-            Free Shipping above Rs. 1000 | 10% off above Rs.1499
-        </div>
-        <div class="header-main bg-white">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <!-- Logo on the left -->
-                    <div class="col-lg-2 col-md-3 col-6 text-center text-md-start" data-aos="fade-right">
-                         <a class="navbar-brand" href="#">
-                            <img src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif" alt="Prabhuji Logo">
-                        </a>
-                    </div>
+      <div class="top-bar text-center">
+        Free Shipping above Rs. 1000 | 10% off above Rs.1499
+      </div>
+      <div class="header-main bg-white">
+        <div class="container-fluid">
+          <div class="row align-items-center">
+            <!-- Logo on the left -->
+            <div
+              class="col-lg-2 col-md-3 col-6 text-center text-md-start"
+              data-aos="fade-right"
+            >
+              <a class="navbar-brand" href="#">
+                <img
+                  src="/head-logo.png"
+                  alt="Prabhuji Logo"
+                />
+              </a>
+            </div>
 
-                    <!-- Mobile Icons (Mobile Only) -->
-                    <div class="col-6 d-flex d-md-none justify-content-end align-items-center gap-2">
-                        <!-- Profile Dropdown -->
-                        <div class="profile-dropdown">
-                            <button class="dropdown-trigger" type="button">
-                                <div class="avatar">
-                                    KK
-                                </div>
-                                <i class="bi bi-chevron-down chevron"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <div class="dropdown-label">
-                                    <span class="user-name">Keith Kennedy</span>
-                                    <span class="user-email">k.kennedy@originui.com</span>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <div class="dropdown-group">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-lightning"></i>
-                                        <span>Option 1</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-layers"></i>
-                                        <span>Option 2</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-book"></i>
-                                        <span>Option 3</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <div class="dropdown-group">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-pin"></i>
-                                        <span>Option 4</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-person-gear"></i>
-                                        <span>Option 5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#" class="icon-link"><i class="bi bi-bag"></i></a>
-                        <!-- Hamburger Menu -->
-                        <button class="hamburger-menu" id="hamburgerMenu">
-                            <span class="hamburger-line"></span>
-                            <span class="hamburger-line"></span>
-                            <span class="hamburger-line"></span>
-                        </button>
-                    </div>
-
-                    <!-- Navigation Links (Desktop Only) -->
-                    <div class="col-lg-4 col-md-6 d-none d-md-flex justify-content-center" data-aos="fade-up">
-                        <nav class="header-nav d-flex align-items-center gap-4">
-                            <a href="#" class="nav-link-header">About Us</a>
-                            <a href="#" class="nav-link-header">Shop Now</a>
-                            <a href="#" class="nav-link-header">Bulk Enquiry</a>
-                            <a href="#" class="nav-link-header">Careers</a>
-                        </nav>
-                    </div>
-
-                    <!-- Search bar -->
-                    <div class="col-lg-3 col-md-3 col-12 d-flex justify-content-center mt-3 mt-md-0" data-aos="zoom-in">
-                        <div class="input-group mobile-search-bar" style="max-width: 350px;">
-                            <input type="text" class="form-control" placeholder="Search for products...">
-                            <button class="btn btn-dark" type="button"><i class="bi bi-search"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Profile and Cart icons (Desktop Only) -->
-                    <div class="col-lg-3 col-md-3 d-none d-md-flex justify-content-end align-items-center gap-3" data-aos="fade-left">
-                        <!-- Profile Dropdown -->
-                        <div class="profile-dropdown">
-                            <button class="dropdown-trigger" type="button">
-                                <div class="avatar">
-                                    KK
-                                </div>
-                                <i class="bi bi-chevron-down chevron"></i>
-                            </button>
-                            <div class="dropdown-content">
-                                <div class="dropdown-label">
-                                    <span class="user-name">Keith Kennedy</span>
-                                    <span class="user-email">k.kennedy@originui.com</span>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <div class="dropdown-group">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-lightning"></i>
-                                        <span>Option 1</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-layers"></i>
-                                        <span>Option 2</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-book"></i>
-                                        <span>Option 3</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <div class="dropdown-group">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-pin"></i>
-                                        <span>Option 4</span>
-                                    </a>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="bi bi-person-gear"></i>
-                                        <span>Option 5</span>
-                                    </a>
-                                </div>
-                                <div class="dropdown-separator"></div>
-                                <a href="#" class="dropdown-item">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#" class="icon-link"><i class="bi bi-bag"></i></a>
-                    </div>
+            <!-- Mobile Icons (Mobile Only) -->
+            <div
+              class="col-6 d-flex d-md-none justify-content-end align-items-center gap-2"
+            >
+              <!-- Profile Dropdown -->
+              <div class="profile-dropdown">
+                <button class="dropdown-trigger" type="button">
+                  <div class="avatar">KK</div>
+                  <i class="bi bi-chevron-down chevron"></i>
+                </button>
+                <div class="dropdown-content">
+                  <div class="dropdown-label">
+                    <span class="user-name">Keith Kennedy</span>
+                    <span class="user-email">k.kennedy@originui.com</span>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <div class="dropdown-group">
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-lightning"></i>
+                      <span>Option 1</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-layers"></i>
+                      <span>Option 2</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-book"></i>
+                      <span>Option 3</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <div class="dropdown-group">
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-pin"></i>
+                      <span>Option 4</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-person-gear"></i>
+                      <span>Option 5</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </a>
                 </div>
-                <!-- Header links below the search -->
-                <!-- <div class="row align-items-center mt-3">
+              </div>
+              <a href="#" class="icon-link"><i class="bi bi-bag"></i></a>
+              <!-- Hamburger Menu -->
+              <button class="hamburger-menu" id="hamburgerMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+              </button>
+            </div>
+
+            <!-- Navigation Links (Desktop Only) -->
+            <div
+              class="col-lg-4 col-md-6 d-none d-md-flex justify-content-center"
+              data-aos="fade-up"
+            >
+              <nav class="header-nav d-flex align-items-center gap-4">
+                <a href="#" class="nav-link-header">About Us</a>
+                <a href="#" class="nav-link-header">Shop Now</a>
+                <a href="#" class="nav-link-header">Bulk Enquiry</a>
+                <a href="#" class="nav-link-header">Careers</a>
+              </nav>
+            </div>
+
+            <!-- Search bar -->
+            <div
+              class="col-lg-3 col-md-3 col-12 d-flex justify-content-center mt-3 mt-md-0"
+              data-aos="zoom-in"
+            >
+              <div
+                class="input-group mobile-search-bar"
+                style="max-width: 350px"
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search for products..."
+                />
+                <button class="btn btn-dark" type="button">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Profile and Cart icons (Desktop Only) -->
+            <div
+              class="col-lg-3 col-md-3 d-none d-md-flex justify-content-end align-items-center gap-3"
+              data-aos="fade-left"
+            >
+              <!-- Profile Dropdown -->
+              <div class="profile-dropdown">
+                <button class="dropdown-trigger" type="button">
+                  <div class="avatar">KK</div>
+                  <i class="bi bi-chevron-down chevron"></i>
+                </button>
+                <div class="dropdown-content">
+                  <div class="dropdown-label">
+                    <span class="user-name">Keith Kennedy</span>
+                    <span class="user-email">k.kennedy@originui.com</span>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <div class="dropdown-group">
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-lightning"></i>
+                      <span>Option 1</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-layers"></i>
+                      <span>Option 2</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-book"></i>
+                      <span>Option 3</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <div class="dropdown-group">
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-pin"></i>
+                      <span>Option 4</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                      <i class="bi bi-person-gear"></i>
+                      <span>Option 5</span>
+                    </a>
+                  </div>
+                  <div class="dropdown-separator"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Logout</span>
+                  </a>
+                </div>
+              </div>
+              <a href="#" class="icon-link"><i class="bi bi-bag"></i></a>
+            </div>
+          </div>
+          <!-- Header links below the search -->
+          <!-- <div class="row align-items-center mt-3">
                     <div class="col-12 text-center" data-aos="fade-up">
                          <nav class="d-flex justify-content-center header-links">
                             <a href="#">About Us</a>
@@ -1885,9 +2030,9 @@
                         </nav>
                     </div>
                 </div> -->
-            </div>
         </div>
-        <!-- <nav class="navbar-categories">
+      </div>
+      <!-- <nav class="navbar-categories">
             <div class="container-fluid d-flex justify-content-center">
                 <ul class="nav" data-aos="fade-up">
                     <li class="nav-item"><a href="#" class="nav-link">Namkeen</a></li>
@@ -1908,423 +2053,642 @@
 
     <!-- Mobile Navigation Menu -->
     <div class="mobile-nav-menu" id="mobileNavMenu">
-        <div class="mobile-nav-header">
-            <h2 style="margin: 0; font-size: 1.25rem; font-weight: 600;">Menu</h2>
-            <button class="mobile-nav-close" id="mobileNavClose">
-                <i class="bi bi-x"></i>
-            </button>
+      <div class="mobile-nav-header">
+        <h2 style="margin: 0; font-size: 1.25rem; font-weight: 600">Menu</h2>
+        <button class="mobile-nav-close" id="mobileNavClose">
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+      <div class="mobile-nav-content">
+        <div class="mobile-nav-section">
+          <h3>Navigation</h3>
+          <a href="#" class="mobile-nav-link">About Us</a>
+          <a href="#" class="mobile-nav-link">Shop Now</a>
+          <a href="#" class="mobile-nav-link">Bulk Enquiry</a>
+          <a href="#" class="mobile-nav-link">Careers</a>
         </div>
-        <div class="mobile-nav-content">
-            <div class="mobile-nav-section">
-                <h3>Navigation</h3>
-                <a href="#" class="mobile-nav-link">About Us</a>
-                <a href="#" class="mobile-nav-link">Shop Now</a>
-                <a href="#" class="mobile-nav-link">Bulk Enquiry</a>
-                <a href="#" class="mobile-nav-link">Careers</a>
-            </div>
-            <div class="mobile-nav-section">
-                <h3>Categories</h3>
-                <a href="#" class="mobile-nav-link">Namkeen</a>
-                <a href="#" class="mobile-nav-link">Sweets</a>
-                <a href="#" class="mobile-nav-link">Lachha</a>
-                <a href="#" class="mobile-nav-link">Bakery</a>
-                <a href="#" class="mobile-nav-link">Beverages</a>
-                <a href="#" class="mobile-nav-link">Festive</a>
-                <a href="#" class="mobile-nav-link">Others</a>
-                <a href="#" class="mobile-nav-link">Offers</a>
-            </div>
-            <div class="mobile-nav-section">
-                <h3>Account</h3>
-                <a href="#" class="mobile-nav-link">
-                    <i class="bi bi-person-circle me-2"></i>Profile
-                </a>
-                <a href="#" class="mobile-nav-link">
-                    <i class="bi bi-bag me-2"></i>Cart
-                </a>
-                <a href="#" class="mobile-nav-link">
-                    <i class="bi bi-box-arrow-right me-2"></i>Logout
-                </a>
-            </div>
+        <div class="mobile-nav-section">
+          <h3>Categories</h3>
+          <a href="#" class="mobile-nav-link">Namkeen</a>
+          <a href="#" class="mobile-nav-link">Sweets</a>
+          <a href="#" class="mobile-nav-link">Lachha</a>
+          <a href="#" class="mobile-nav-link">Bakery</a>
+          <a href="#" class="mobile-nav-link">Beverages</a>
+          <a href="#" class="mobile-nav-link">Festive</a>
+          <a href="#" class="mobile-nav-link">Others</a>
+          <a href="#" class="mobile-nav-link">Offers</a>
         </div>
+        <div class="mobile-nav-section">
+          <h3>Account</h3>
+          <a href="#" class="mobile-nav-link">
+            <i class="bi bi-person-circle me-2"></i>Profile
+          </a>
+          <a href="#" class="mobile-nav-link">
+            <i class="bi bi-bag me-2"></i>Cart
+          </a>
+          <a href="#" class="mobile-nav-link">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- Hero Section -->
-   <section class="hero-section">
-        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-            <!-- Slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="banner_img/banner-1.png" class="d-block w-100" alt="Hero Banner 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="banner_img/banner-2.jpg" class="d-block w-100" alt="Hero Banner 2">
-                </div>
-                <div class="carousel-item">
-                    <img src="banner_img/bannner-3.jpg" class="d-block w-100" alt="Hero Banner 3">
-                </div>
-                <div class="carousel-item">
-                    <img src="banner_img/banner-4.jpg" class="d-block w-100" alt="Hero Banner 4">
-                </div>
-            </div>
-
-            <!-- Controls -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-            
-            <!-- Progress Bars -->
-            <div class="carousel-progress-bars">
-                <div class="progress-bar-item active" data-slide="0"></div>
-                <div class="progress-bar-item" data-slide="1"></div>
-                <div class="progress-bar-item" data-slide="2"></div>
-                <div class="progress-bar-item" data-slide="3"></div>
-            </div>
+    <section class="hero-section">
+      <div
+        id="heroCarousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-interval="5000"
+      >
+        <!-- Slides -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="banner_img/banner-1.png"
+              class="d-block w-100"
+              alt="Hero Banner 1"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="banner_img/banner-2.jpg"
+              class="d-block w-100"
+              alt="Hero Banner 2"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="banner_img/bannner-3.jpg"
+              class="d-block w-100"
+              alt="Hero Banner 3"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="banner_img/banner-4.jpg"
+              class="d-block w-100"
+              alt="Hero Banner 4"
+            />
+          </div>
         </div>
 
-        <!-- Info Bar -->
-        <div class="container">
-            <div class="info-bar p-3 mt-4 bg-light rounded shadow-sm" data-aos="zoom-in">
-                <div class="row text-center">
-                    <div class="col">
-                        <div class="info-item"><i class="bi bi-patch-check-fill text-primary"></i> Authentic Taste Since
-                            1937</div>
-                    </div>
-                    <div class="col">
-                        <div class="info-item"><i class="bi bi-star-fill text-warning"></i> Quality Ingredients</div>
-                    </div>
-                    <div class="col">
-                        <div class="info-item"><i class="bi bi-truck text-success"></i> Free Shipping above 1000</div>
-                    </div>
-                    <div class="col">
-                        <div class="info-item"><i class="bi bi-percent text-danger"></i> 10% off above 1499</div>
-                    </div>
-                    <div class="col">
-                        <div class="info-item"><i class="bi bi-box-seam-fill text-secondary"></i> 500+ Products</div>
-                    </div>
-                </div>
-            </div>
+        <!-- Controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+
+        <!-- Progress Bars -->
+        <div class="carousel-progress-bars">
+          <div class="progress-bar-item active" data-slide="0"></div>
+          <div class="progress-bar-item" data-slide="1"></div>
+          <div class="progress-bar-item" data-slide="2"></div>
+          <div class="progress-bar-item" data-slide="3"></div>
         </div>
+      </div>
+
+      Standalone WhatsApp Button
+      <div class="whatsapp-standalone" id="whatsappStandalone" title="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+      </div>
+
+      <!-- Info Bar -->
+      <div class="container">
+        <div
+          class="info-bar p-3 mt-4 bg-light rounded shadow-sm"
+          data-aos="zoom-in"
+        >
+          <div class="row text-center">
+            <div class="col">
+              <div class="info-item">
+                <i class="bi bi-patch-check-fill text-primary"></i> Authentic
+                Taste Since 1937
+              </div>
+            </div>
+            <div class="col">
+              <div class="info-item">
+                <i class="bi bi-star-fill text-warning"></i> Quality Ingredients
+              </div>
+            </div>
+            <div class="col">
+              <div class="info-item">
+                <i class="bi bi-truck text-success"></i> Free Shipping above
+                1000
+              </div>
+            </div>
+            <div class="col">
+              <div class="info-item">
+                <i class="bi bi-percent text-danger"></i> 10% off above 1499
+              </div>
+            </div>
+            <div class="col">
+              <div class="info-item">
+                <i class="bi bi-box-seam-fill text-secondary"></i> 500+ Products
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
-
 
     <!-- Category Section -->
     <section class="category-section py-5">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="section-title mb-0" data-aos="fade-up">Category</h2>
-                <div class="d-flex align-items-center">
-                    <button class="btn btn-success btn-sm me-2" data-aos="fade-up" data-aos-delay="100">View All</button>
-                    <button class="carousel-nav-btn prev-btn me-2" onclick="scrollCategories('left')" data-aos="fade-up" data-aos-delay="150">
-                        <i class="bi bi-chevron-left"></i>
-                    </button>
-                    <button class="carousel-nav-btn next-btn" onclick="scrollCategories('right')" data-aos="fade-up" data-aos-delay="200">
-                        <i class="bi bi-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="category-carousel-container" data-aos="fade-up" data-aos-delay="300">
-                <div class="category-carousel" id="categoryCarousel">
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=150&fit=crop&crop=center" alt="Fruits & Veges">
-                        </div>
-                        <p class="category-name">Fruits & Veges</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=150&h=150&fit=crop&crop=center" alt="Breads & Sweets">
-                        </div>
-                        <p class="category-name">Breads & Sweets</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=150&h=150&fit=crop&crop=center" alt="Fruits & Veges">
-                        </div>
-                        <p class="category-name">Fruits & Veges</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=150&h=150&fit=crop&crop=center" alt="Beverages">
-                        </div>
-                        <p class="category-name">Beverages</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1588347818111-d3b9b4d0e6b8?w=150&h=150&fit=crop&crop=center" alt="Meat Products">
-                        </div>
-                        <p class="category-name">Meat Products</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=150&h=150&fit=crop&crop=center" alt="Breads">
-                        </div>
-                        <p class="category-name">Breads</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1569288052389-dac9b01ac4b5?w=150&h=150&fit=crop&crop=center" alt="Fruits & Veges">
-                        </div>
-                        <p class="category-name">Fruits & Veges</p>
-                    </div>
-
-                    <div class="category-item">
-                        <div class="category-image">
-                            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=150&h=150&fit=crop&crop=center" alt="Breads & Sweets">
-                        </div>
-                        <p class="category-name">Breads & Sweets</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title mb-0" data-aos="fade-up">Category</h2>
+          <div class="d-flex align-items-center">
+            <button
+              class="btn btn-success btn-sm me-2"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              View All
+            </button>
+            <button
+              class="carousel-nav-btn prev-btn me-2"
+              onclick="scrollCategories('left')"
+              data-aos="fade-up"
+              data-aos-delay="150"
+            >
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button
+              class="carousel-nav-btn next-btn"
+              onclick="scrollCategories('right')"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
         </div>
+
+        <div
+          class="category-carousel-container"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div class="category-carousel" id="categoryCarousel">
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=150&h=150&fit=crop&crop=center"
+                  alt="Fruits & Veges"
+                />
+              </div>
+              <p class="category-name">Fruits & Veges</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=150&h=150&fit=crop&crop=center"
+                  alt="Breads & Sweets"
+                />
+              </div>
+              <p class="category-name">Breads & Sweets</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?w=150&h=150&fit=crop&crop=center"
+                  alt="Fruits & Veges"
+                />
+              </div>
+              <p class="category-name">Fruits & Veges</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=150&h=150&fit=crop&crop=center"
+                  alt="Beverages"
+                />
+              </div>
+              <p class="category-name">Beverages</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1588347818111-d3b9b4d0e6b8?w=150&h=150&fit=crop&crop=center"
+                  alt="Meat Products"
+                />
+              </div>
+              <p class="category-name">Meat Products</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=150&h=150&fit=crop&crop=center"
+                  alt="Breads"
+                />
+              </div>
+              <p class="category-name">Breads</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1569288052389-dac9b01ac4b5?w=150&h=150&fit=crop&crop=center"
+                  alt="Fruits & Veges"
+                />
+              </div>
+              <p class="category-name">Fruits & Veges</p>
+            </div>
+
+            <div class="category-item">
+              <div class="category-image">
+                <img
+                  src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=150&h=150&fit=crop&crop=center"
+                  alt="Breads & Sweets"
+                />
+              </div>
+              <p class="category-name">Breads & Sweets</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Bestselling Products Section -->
     <section class="py-5">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Shop Prabhuji's Bestselling Products</h2>
-            <div class="row">
-                <!-- Product 1 -->
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="card product-card position-relative">
-                        <div class="bestseller-tag">BEST SELLER</div>
-                        <img src="product_img/Bhujiya.webp" class="card-img-top" alt="Bhujia">
-                        <div class="card-body">
-                            <h5 class="card-title">Bhujia</h5>
-                            <p class="card-text">Rs. 60.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product 2 -->
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card product-card position-relative">
-                        <div class="bestseller-tag">BEST SELLER</div>
-                        <img src="product_img//Haldirams-Prabhuji-Khatta-Meetha-Namkeen-400-gm-Pouch.webp" class="card-img-top" alt="Khatta Meetha">
-                        <div class="card-body">
-                            <h5 class="card-title">Khatta Meetha</h5>
-                            <p class="card-text">Rs. 58.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product 3 -->
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card product-card position-relative">
-                         <div class="bestseller-tag">BEST SELLER</div>
-                        <img src="product_img/All-In-One.webp" class="card-img-top" alt="All In One">
-                        <div class="card-body">
-                            <h5 class="card-title">All In One</h5>
-                            <p class="card-text">Rs. 58.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                 <!-- Product 4 -->
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card product-card">
-                        <img src="product_img/elaichi-besan-laddu.png"class="card-img-top" alt="Besan Laddu">
-                        <div class="card-body">
-                            <h5 class="card-title">Elaichi Besan Laddu</h5>
-                            <p class="card-text">Rs. 199.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card product-card">
-                        <img src="product_img/Hot-Mixture.webp" class="card-img-top" alt="Besan Laddu">
-                        <div class="card-body">
-                            <h5 class="card-title">Hot Mixture</h5>
-                            <p class="card-text">Rs. 199.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card product-card">
-                        <img src="product_img/pistachio.png" class="card-img-top" alt="Besan Laddu">
-                        <div class="card-body">
-                            <h5 class="card-title">Pistachio</h5>
-                            <p class="card-text">Rs. 199.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card product-card">
-                        <img src="product_img/chipaxx.png" class="card-img-top" alt="Besan Laddu">
-                        <div class="card-body">
-                            <h5 class="card-title">Chipaxx</h5>
-                            <p class="card-text">Rs. 20.00  </p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-lg-3 mb-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card product-card">
-                        <img src="product_img/gulab jamun.png" class="card-img-top" alt="Besan Laddu">
-                        <div class="card-body">
-                            <h5 class="card-title">Gulab Jamun</h5>
-                            <p class="card-text">Rs. 199.00</p>
-                            <a href="#" class="btn">View Product</a>
-                        </div>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">
+          Shop Prabhuji's Bestselling Products
+        </h2>
+        <div class="row">
+          <!-- Product 1 -->
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="0"
+          >
+            <div class="card product-card position-relative">
+              <div class="bestseller-tag">BEST SELLER</div>
+              <img
+                src="product_img/Bhujiya.webp"
+                class="card-img-top"
+                alt="Bhujia"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Bhujia</h5>
+                <p class="card-text">Rs. 60.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
             </div>
+          </div>
+          <!-- Product 2 -->
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="card product-card position-relative">
+              <div class="bestseller-tag">BEST SELLER</div>
+              <img
+                src="product_img//Haldirams-Prabhuji-Khatta-Meetha-Namkeen-400-gm-Pouch.webp"
+                class="card-img-top"
+                alt="Khatta Meetha"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Khatta Meetha</h5>
+                <p class="card-text">Rs. 58.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <!-- Product 3 -->
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="card product-card position-relative">
+              <div class="bestseller-tag">BEST SELLER</div>
+              <img
+                src="product_img/All-In-One.webp"
+                class="card-img-top"
+                alt="All In One"
+              />
+              <div class="card-body">
+                <h5 class="card-title">All In One</h5>
+                <p class="card-text">Rs. 58.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <!-- Product 4 -->
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="card product-card">
+              <img
+                src="product_img/elaichi-besan-laddu.png"
+                class="card-img-top"
+                alt="Besan Laddu"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Elaichi Besan Laddu</h5>
+                <p class="card-text">Rs. 199.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="card product-card">
+              <img
+                src="product_img/Hot-Mixture.webp"
+                class="card-img-top"
+                alt="Besan Laddu"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Hot Mixture</h5>
+                <p class="card-text">Rs. 199.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="card product-card">
+              <img
+                src="product_img/pistachio.png"
+                class="card-img-top"
+                alt="Besan Laddu"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Pistachio</h5>
+                <p class="card-text">Rs. 199.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="card product-card">
+              <img
+                src="product_img/chipaxx.png"
+                class="card-img-top"
+                alt="Besan Laddu"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Chipaxx</h5>
+                <p class="card-text">Rs. 20.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-sm-6 col-md-4 col-lg-3 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="card product-card">
+              <img
+                src="product_img/gulab jamun.png"
+                class="card-img-top"
+                alt="Besan Laddu"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Gulab Jamun</h5>
+                <p class="card-text">Rs. 199.00</p>
+                <a href="#" class="btn">View Product</a>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Video Section -->
     <section class="py-5">
-        <div class="container">
-            <h2 class="section-title text-center mb-5" data-aos="fade-up">Experience Prabhuji's Legacy</h2>
-            <div class="row">
-                <!-- Video 1 -->
-                <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-aos="fade-right">
-                    <div class="video-container">
-                        <video controls class="w-100 rounded shadow">
-                            <source src="video/v1.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-                <!-- Video 2 -->
-                <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-aos="fade-left">
-                    <div class="video-container">
-                        <video controls class="w-100 rounded shadow">
-                            <source src="video/v2.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="section-title text-center mb-5" data-aos="fade-up">
+          Experience Prabhuji's Legacy
+        </h2>
+        <div class="row">
+          <!-- Video 1 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-aos="fade-right">
+            <div class="video-container">
+              <video controls class="w-100 rounded shadow">
+                <source src="video/v1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
+          </div>
+          <!-- Video 2 -->
+          <div class="col-lg-6 col-md-6 col-sm-12 mb-4" data-aos="fade-left">
+            <div class="video-container">
+              <video controls class="w-100 rounded shadow">
+                <source src="video/v2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Stats Section -->
     <section class="py-5 bg-light">
-        <div class="container">
-             <div class="row text-center" data-aos="fade-up">
-                <div class="col"><div class="info-item"><i class="bi bi-people-fill"></i> <h5>45,00,000+</h5> <p>Satisfied Customers</p></div></div>
-                <div class="col"><div class="info-item"><i class="bi bi-shop"></i> <h5>700+</h5> <p>Retail Stores</p></div></div>
-                <div class="col"><div class="info-item"><i class="bi bi-geo-alt-fill"></i> <h5>125+</h5> <p>City Presence</p></div></div>
-                <div class="col"><div class="info-item"><i class="bi bi-building"></i> <h5>100+</h5> <p>Flagship Stores</p></div></div>
-                <div class="col"><div class="info-item"><i class="bi bi-globe-americas"></i> <h5>20+</h5> <p>International Stores</p></div></div>
-             </div>
+      <div class="container">
+        <div class="row text-center" data-aos="fade-up">
+          <div class="col">
+            <div class="info-item">
+              <i class="bi bi-people-fill"></i>
+              <h5>45,00,000+</h5>
+              <p>Satisfied Customers</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="info-item">
+              <i class="bi bi-shop"></i>
+              <h5>700+</h5>
+              <p>Retail Stores</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="info-item">
+              <i class="bi bi-geo-alt-fill"></i>
+              <h5>125+</h5>
+              <p>City Presence</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="info-item">
+              <i class="bi bi-building"></i>
+              <h5>100+</h5>
+              <p>Flagship Stores</p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="info-item">
+              <i class="bi bi-globe-americas"></i>
+              <h5>20+</h5>
+              <p>International Stores</p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section class="about-section py-5">
-  <div class="container">
-    <div class="row align-items-center">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Left Column (Text) -->
+          <div
+            class="col-lg-6 mb-4 mb-lg-0"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+          >
+            <h2 class="fw-bold mb-3">About Prabhuji Pure Food</h2>
+            <p>
+              The name “Prabhuji” is symbolic of joy and taste in the purest
+              form. We can trace the origins of our legacy to
+              <strong>Mr. Prabhu Shankar Agarwal.</strong>
+            </p>
+            <p>
+              The founder of a successful company that offered Indian households
+              the widest selection of snacks. In <strong>1937</strong>, his
+              grandfather, Mr. Ganga Bishen Agarwal, commonly known as "Haldi,"
+              used his talent for producing delicious Bhujia to open a modest
+              shop called "Haldiram Bhujiawala" in Bikaner, Rajasthan.
+            </p>
+            <p>
+              While the business gained momentum in Bikaner, his son Mr.
+              Rameshwar Lal Agarwal moved to Kolkata with his family.
+            </p>
+          </div>
 
-      <!-- Left Column (Text) -->
-      <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
-        <h2 class="fw-bold mb-3">About Prabhuji Pure Food</h2>
-        <p>
-          The name “Prabhuji” is symbolic of joy and taste in the purest form.
-          We can trace the origins of our legacy to
-          <strong>Mr. Prabhu Shankar Agarwal.</strong>
-        </p>
-        <p>
-          The founder of a successful company that offered Indian households the widest selection of
-          snacks.
-          In <strong>1937</strong>, his grandfather, Mr. Ganga Bishen Agarwal, commonly known as "Haldi,"
-          used his talent for producing delicious Bhujia to open a modest shop called
-          "Haldiram Bhujiawala" in Bikaner, Rajasthan.
-        </p>
-        <p>
-          While the business gained momentum in Bikaner, his son Mr. Rameshwar Lal Agarwal moved to
-          Kolkata with his family.
-        </p>
-      </div>
+          <!-- Right Column (Image) -->
+          <div class="col-lg-6 text-center position-relative">
+            <!-- Background sketch -->
+            <img
+              src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif"
+              class="img-fluid w-100 mb-3"
+              alt="Background Sketch"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+            />
 
-      <!-- Right Column (Image) -->
-      <div class="col-lg-6 text-center position-relative">
-        <!-- Background sketch -->
-        <img src="banner_img/about-img.png" class="img-fluid w-100 mb-3" alt="Background Sketch"
-          data-aos="fade-left" data-aos-duration="1000">
-
-        <!-- Product bowls overlay -->
-        <div class="position-absolute bottom-0 start-50 translate-middle-x" style="max-width: 450px;"
-          data-aos="zoom-in-up" data-aos-delay="400">
-          <img src="banner_img/LOGO.jpeg" class="img-fluid" alt="Snacks">
+            <!-- Product bowls overlay -->
+            <div
+              class="position-absolute bottom-0 start-50 translate-middle-x"
+              style="max-width: 450px"
+              data-aos="zoom-in-up"
+              data-aos-delay="400"
+            >
+              <!-- <img src="banner_img/LOGO.jpeg" class="img-fluid" alt="Snacks" /> -->
+            </div>
+          </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-right">
-                    <img src="https://placehold.co/150x60/a60c6c/ffffff?text=Prabhuji" alt="Prabhuji White Logo" class="mb-3 footer-logo">
-                    <p class="small">The founder of a successful company that offered Indian households the widest selection of snacks.</p>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up">
-                    <h5>QUICK LINKS</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Our Stores</a></li>
-                        <li><a href="#">Recipes</a></li>
-                        <li><a href="#">Blogs</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <h5>OUR POLICIES</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Cancellation & Refund</a></li>
-                        <li><a href="#">Shipping</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <h5>CATEGORIES</h5>
-                     <ul class="list-unstyled">
-                        <li><a href="#">Namkeen</a></li>
-                        <li><a href="#">Sweets</a></li>
-                        <li><a href="#">Lachha</a></li>
-                        <li><a href="#">Bakery</a></li>
-                        <li><a href="#">Beverages</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-left">
-                    <h5>CONTACT INFO</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="mailto:feedback@prabhujipurefood.com">feedback@prabhujipurefood.com</a></li>
-                        <li><a href="tel:+919875611111">+91 98756 11111</a></li>
-                    </ul>
-                     <div class="social-icons mt-3">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-twitter"></i></a>
-                        <a href="#"><i class="bi bi-whatsapp"></i></a>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-right">
+            <img
+              src="https://placehold.co/150x60/a60c6c/ffffff?text=Prabhuji"
+              alt="Prabhuji White Logo"
+              class="mb-3 footer-logo"
+            />
+            <p class="small">
+              The founder of a successful company that offered Indian households
+              the widest selection of snacks.
+            </p>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4" data-aos="fade-up">
+            <h5>QUICK LINKS</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Our Stores</a></li>
+              <li><a href="#">Recipes</a></li>
+              <li><a href="#">Blogs</a></li>
+            </ul>
+          </div>
+          <div
+            class="col-lg-2 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <h5>OUR POLICIES</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Cancellation & Refund</a></li>
+              <li><a href="#">Shipping</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div
+            class="col-lg-2 col-md-6 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <h5>CATEGORIES</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">Namkeen</a></li>
+              <li><a href="#">Sweets</a></li>
+              <li><a href="#">Lachha</a></li>
+              <li><a href="#">Bakery</a></li>
+              <li><a href="#">Beverages</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-left">
+            <h5>CONTACT INFO</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="mailto:feedback@prabhujipurefood.com"
+                  >feedback@prabhujipurefood.com</a
+                >
+              </li>
+              <li><a href="tel:+919875611111">+91 98756 11111</a></li>
+            </ul>
+            <div class="social-icons mt-3">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-twitter"></i></a>
+              <a href="#"><i class="bi bi-whatsapp"></i></a>
             </div>
-            <hr>
-            <div class="text-center small">
-                <p>&copy; 2024 Prabhuji Pure Food. All Rights Reserved.</p>
-            </div>
+          </div>
         </div>
+        <hr />
+        <div class="text-center small">
+          <p>&copy; 2024 Prabhuji Pure Food. All Rights Reserved.</p>
+        </div>
+      </div>
     </footer>
-
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -2333,60 +2697,71 @@
     <script>
       AOS.init({
         duration: 700,
-        easing: 'ease-out-cubic',
+        easing: "ease-out-cubic",
         once: true,
-        offset: 60
+        offset: 60,
       });
 
       // Category Carousel Scroll Function
       function scrollCategories(direction) {
-        const carousel = document.getElementById('categoryCarousel');
+        const carousel = document.getElementById("categoryCarousel");
         const scrollAmount = 200; // Adjust scroll distance as needed
 
-        if (direction === 'left') {
+        if (direction === "left") {
           carousel.scrollBy({
             left: -scrollAmount,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
-        } else if (direction === 'right') {
+        } else if (direction === "right") {
           carousel.scrollBy({
             left: scrollAmount,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
         }
       }
 
       // Optional: Auto-hide navigation buttons based on scroll position
-      document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.getElementById('categoryCarousel');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("categoryCarousel");
+        const prevBtn = document.querySelector(".prev-btn");
+        const nextBtn = document.querySelector(".next-btn");
 
         function updateNavButtons() {
           if (carousel.scrollLeft <= 0) {
-            prevBtn.style.opacity = '0.5';
+            prevBtn.style.opacity = "0.5";
           } else {
-            prevBtn.style.opacity = '1';
+            prevBtn.style.opacity = "1";
           }
 
-          if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
-            nextBtn.style.opacity = '0.5';
+          if (
+            carousel.scrollLeft >=
+            carousel.scrollWidth - carousel.clientWidth
+          ) {
+            nextBtn.style.opacity = "0.5";
           } else {
-            nextBtn.style.opacity = '1';
+            nextBtn.style.opacity = "1";
           }
         }
 
-        carousel.addEventListener('scroll', updateNavButtons);
+        carousel.addEventListener("scroll", updateNavButtons);
         updateNavButtons(); // Initial check
       });
 
       // Profile dropdown functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const profileDropdown = document.querySelector('.profile-dropdown');
-        const dropdownTrigger = document.querySelector('.profile-dropdown .dropdown-trigger');
-        const dropdownContent = document.querySelector('.profile-dropdown .dropdown-content');
+      document.addEventListener("DOMContentLoaded", function () {
+        const profileDropdown = document.querySelector(".profile-dropdown");
+        const dropdownTrigger = document.querySelector(
+          ".profile-dropdown .dropdown-trigger"
+        );
+        const dropdownContent = document.querySelector(
+          ".profile-dropdown .dropdown-content"
+        );
 
-        console.log('Profile dropdown elements:', { profileDropdown, dropdownTrigger, dropdownContent });
+        console.log("Profile dropdown elements:", {
+          profileDropdown,
+          dropdownTrigger,
+          dropdownContent,
+        });
 
         if (profileDropdown && dropdownTrigger && dropdownContent) {
           let isOpen = false;
@@ -2396,22 +2771,22 @@
           function showDropdown() {
             clearTimeout(hoverTimeout);
             isOpen = true;
-            profileDropdown.classList.add('show');
+            profileDropdown.classList.add("show");
           }
 
           function hideDropdown() {
-            hoverTimeout = setTimeout(function() {
+            hoverTimeout = setTimeout(function () {
               isOpen = false;
-              profileDropdown.classList.remove('show');
+              profileDropdown.classList.remove("show");
             }, 150);
           }
 
           // Mouse events for hover effect
-          profileDropdown.addEventListener('mouseenter', showDropdown);
-          profileDropdown.addEventListener('mouseleave', hideDropdown);
+          profileDropdown.addEventListener("mouseenter", showDropdown);
+          profileDropdown.addEventListener("mouseleave", hideDropdown);
 
           // Click functionality as backup
-          dropdownTrigger.addEventListener('click', function(e) {
+          dropdownTrigger.addEventListener("click", function (e) {
             e.preventDefault();
             e.stopPropagation();
             if (isOpen) {
@@ -2422,85 +2797,85 @@
           });
 
           // Close on outside click
-          document.addEventListener('click', function(e) {
+          document.addEventListener("click", function (e) {
             if (!profileDropdown.contains(e.target)) {
               hideDropdown();
             }
           });
 
           // Prevent dropdown from closing when clicking inside
-          dropdownContent.addEventListener('click', function(e) {
+          dropdownContent.addEventListener("click", function (e) {
             e.stopPropagation();
           });
         } else {
-          console.error('Profile dropdown elements not found');
+          console.error("Profile dropdown elements not found");
         }
       });
 
       // Mobile Navigation functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
-        const mobileNavMenu = document.getElementById('mobileNavMenu');
-        const mobileNavClose = document.getElementById('mobileNavClose');
+      document.addEventListener("DOMContentLoaded", function () {
+        const hamburgerMenu = document.getElementById("hamburgerMenu");
+        const mobileNavOverlay = document.getElementById("mobileNavOverlay");
+        const mobileNavMenu = document.getElementById("mobileNavMenu");
+        const mobileNavClose = document.getElementById("mobileNavClose");
 
         function openMobileNav() {
-          hamburgerMenu.classList.add('active');
-          mobileNavOverlay.classList.add('active');
-          mobileNavMenu.classList.add('active');
-          document.body.style.overflow = 'hidden';
+          hamburgerMenu.classList.add("active");
+          mobileNavOverlay.classList.add("active");
+          mobileNavMenu.classList.add("active");
+          document.body.style.overflow = "hidden";
         }
 
         function closeMobileNav() {
-          hamburgerMenu.classList.remove('active');
-          mobileNavOverlay.classList.remove('active');
-          mobileNavMenu.classList.remove('active');
-          document.body.style.overflow = '';
+          hamburgerMenu.classList.remove("active");
+          mobileNavOverlay.classList.remove("active");
+          mobileNavMenu.classList.remove("active");
+          document.body.style.overflow = "";
         }
 
         // Event listeners
-        hamburgerMenu.addEventListener('click', openMobileNav);
-        mobileNavClose.addEventListener('click', closeMobileNav);
-        mobileNavOverlay.addEventListener('click', closeMobileNav);
+        hamburgerMenu.addEventListener("click", openMobileNav);
+        mobileNavClose.addEventListener("click", closeMobileNav);
+        mobileNavOverlay.addEventListener("click", closeMobileNav);
 
         // Close on escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') {
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
             closeMobileNav();
           }
         });
 
         // Close menu when clicking on nav links
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        mobileNavLinks.forEach(link => {
-          link.addEventListener('click', closeMobileNav);
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        mobileNavLinks.forEach((link) => {
+          link.addEventListener("click", closeMobileNav);
         });
       });
 
       // Enhanced Carousel Sliding Animation
-      document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.getElementById('heroCarousel');
-        
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("heroCarousel");
+
         if (carousel) {
           // Add smooth transition class
-          carousel.addEventListener('slide.bs.carousel', function(e) {
+          carousel.addEventListener("slide.bs.carousel", function (e) {
             // Add sliding animation class
-            carousel.classList.add('sliding');
+            carousel.classList.add("sliding");
           });
 
-          carousel.addEventListener('slid.bs.carousel', function(e) {
+          carousel.addEventListener("slid.bs.carousel", function (e) {
             // Remove sliding animation class after transition
             setTimeout(() => {
-              carousel.classList.remove('sliding');
+              carousel.classList.remove("sliding");
             }, 100);
           });
 
           // Pause on hover for better user experience
-          carousel.addEventListener('mouseenter', function() {
+          carousel.addEventListener("mouseenter", function () {
             bootstrap.Carousel.getInstance(carousel).pause();
           });
 
-          carousel.addEventListener('mouseleave', function() {
+          carousel.addEventListener("mouseleave", function () {
             bootstrap.Carousel.getInstance(carousel).cycle();
           });
         }
@@ -2509,152 +2884,174 @@
 
     <!-- Chat Widget -->
     <div class="chat-widget" id="chatWidget">
-        <div class="chat-button" id="chatButton">
-            <i class="bi bi-chat-dots-fill"></i>
-            <span class="chat-notification" id="chatNotification">1</span>
+      <div class="chat-button" id="chatButton">
+        <i class="bi bi-chat-dots-fill"></i>
+        <span class="chat-notification" id="chatNotification">1</span>
+        <div
+          class="whatsapp-overlay"
+          id="whatsappButton"
+          title="Chat on WhatsApp"
+        >
+          <i class="bi bi-whatsapp"></i>
         </div>
-        
-        <div class="chat-window" id="chatWindow">
-            <div class="chat-header">
-                <div class="chat-header-info">
-                    <div class="chat-avatar">
-                        <img src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif" alt="Support">
-                    </div>
-                    <div class="chat-details">
-                        <h6>Prabhuji Support</h6>
-                        <span class="chat-status">Online</span>
-                    </div>
-                </div>
-                <button class="chat-close" id="chatClose">
-                    <i class="bi bi-x"></i>
-                </button>
+      </div>
+
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-avatar">
+              <img
+                src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif"
+                alt="Support"
+              />
             </div>
-            
-            <div class="chat-messages" id="chatMessages">
-                <div class="message bot-message">
-                    <div class="message-avatar">
-                        <img src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif" alt="Bot">
-                    </div>
-                    <div class="message-content">
-                        <p>Hello! 👋 Welcome to Prabhuji Pure Food. How can I help you today?</p>
-                        <span class="message-time">Just now</span>
-                    </div>
-                </div>
+            <div class="chat-details">
+              <h6>Prabhuji Support</h6>
+              <span class="chat-status">Online</span>
             </div>
-            
-            <div class="chat-input-container">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
-                <button class="chat-send" id="chatSend">
-                    <i class="bi bi-send-fill"></i>
-                </button>
-            </div>
+          </div>
+          <button class="chat-close" id="chatClose">
+            <i class="bi bi-x"></i>
+          </button>
         </div>
+
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-avatar">
+              <img
+                src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif"
+                alt="Bot"
+              />
+            </div>
+            <div class="message-content">
+              <p>
+                Hello! 👋 Welcome to Prabhuji Pure Food. How can I help you
+                today?
+              </p>
+              <span class="message-time">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-container">
+          <input
+            type="text"
+            class="chat-input"
+            id="chatInput"
+            placeholder="Type your message..."
+          />
+          <button class="chat-send" id="chatSend">
+            <i class="bi bi-send-fill"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Carousel Progress Bars Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('heroCarousel');
-            const progressBars = document.querySelectorAll('.progress-bar-item');
-            let currentSlide = 0;
-            let progressInterval;
+      // Carousel Progress Bars Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("heroCarousel");
+        const progressBars = document.querySelectorAll(".progress-bar-item");
+        let currentSlide = 0;
+        let progressInterval;
 
-            function resetProgressBars() {
-                progressBars.forEach((bar, index) => {
-                    bar.classList.remove('active', 'completed');
-                    if (index < currentSlide) {
-                        bar.classList.add('completed');
-                    }
-                });
+        function resetProgressBars() {
+          progressBars.forEach((bar, index) => {
+            bar.classList.remove("active", "completed");
+            if (index < currentSlide) {
+              bar.classList.add("completed");
             }
+          });
+        }
 
-            function startProgress() {
-                clearInterval(progressInterval);
-                resetProgressBars();
-                
-                if (progressBars[currentSlide]) {
-                    progressBars[currentSlide].classList.add('active');
-                }
-            }
+        function startProgress() {
+          clearInterval(progressInterval);
+          resetProgressBars();
 
-            // Bootstrap carousel events
-            carousel.addEventListener('slide.bs.carousel', function(e) {
-                currentSlide = e.to;
-                startProgress();
-            });
+          if (progressBars[currentSlide]) {
+            progressBars[currentSlide].classList.add("active");
+          }
+        }
 
-            // Initialize progress bars
-            startProgress();
-
-            // Handle manual navigation
-            const prevBtn = document.querySelector('.carousel-control-prev');
-            const nextBtn = document.querySelector('.carousel-control-next');
-            
-            [prevBtn, nextBtn].forEach(btn => {
-                btn.addEventListener('click', () => {
-                    clearInterval(progressInterval);
-                });
-            });
-
-            // Click on progress bars to navigate
-            progressBars.forEach((bar, index) => {
-                bar.addEventListener('click', () => {
-                    const bsCarousel = new bootstrap.Carousel(carousel);
-                    bsCarousel.to(index);
-                });
-            });
+        // Bootstrap carousel events
+        carousel.addEventListener("slide.bs.carousel", function (e) {
+          currentSlide = e.to;
+          startProgress();
         });
 
-        // Chat Widget Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatButton = document.getElementById('chatButton');
-            const chatWindow = document.getElementById('chatWindow');
-            const chatClose = document.getElementById('chatClose');
-            const chatInput = document.getElementById('chatInput');
-            const chatSend = document.getElementById('chatSend');
-            const chatMessages = document.getElementById('chatMessages');
-            const chatNotification = document.getElementById('chatNotification');
+        // Initialize progress bars
+        startProgress();
 
-            let isOpen = false;
+        // Handle manual navigation
+        const prevBtn = document.querySelector(".carousel-control-prev");
+        const nextBtn = document.querySelector(".carousel-control-next");
 
-            function toggleChat() {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    chatWindow.classList.add('active');
-                    chatButton.classList.add('active');
-                    chatNotification.style.display = 'none';
-                    chatInput.focus();
-                } else {
-                    chatWindow.classList.remove('active');
-                    chatButton.classList.remove('active');
-                }
-            }
+        [prevBtn, nextBtn].forEach((btn) => {
+          btn.addEventListener("click", () => {
+            clearInterval(progressInterval);
+          });
+        });
 
-            function sendMessage() {
-                const message = chatInput.value.trim();
-                if (message) {
-                    // Add user message
-                    const userMessage = document.createElement('div');
-                    userMessage.className = 'message user-message';
-                    userMessage.innerHTML = `
+        // Click on progress bars to navigate
+        progressBars.forEach((bar, index) => {
+          bar.addEventListener("click", () => {
+            const bsCarousel = new bootstrap.Carousel(carousel);
+            bsCarousel.to(index);
+          });
+        });
+      });
+
+      // Chat Widget Functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatButton = document.getElementById("chatButton");
+        const chatWindow = document.getElementById("chatWindow");
+        const chatClose = document.getElementById("chatClose");
+        const chatInput = document.getElementById("chatInput");
+        const chatSend = document.getElementById("chatSend");
+        const chatMessages = document.getElementById("chatMessages");
+        const chatNotification = document.getElementById("chatNotification");
+        const whatsappButton = document.getElementById("whatsappButton");
+
+        let isOpen = false;
+
+        function toggleChat() {
+          isOpen = !isOpen;
+          if (isOpen) {
+            chatWindow.classList.add("active");
+            chatButton.classList.add("active");
+            chatNotification.style.display = "none";
+            chatInput.focus();
+          } else {
+            chatWindow.classList.remove("active");
+            chatButton.classList.remove("active");
+          }
+        }
+
+        function sendMessage() {
+          const message = chatInput.value.trim();
+          if (message) {
+            // Add user message
+            const userMessage = document.createElement("div");
+            userMessage.className = "message user-message";
+            userMessage.innerHTML = `
                         <div class="message-content">
                             <p>${message}</p>
                             <span class="message-time">Just now</span>
                         </div>
                     `;
-                    chatMessages.appendChild(userMessage);
-                    
-                    // Clear input
-                    chatInput.value = '';
-                    
-                    // Scroll to bottom
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                    
-                    // Simulate bot response
-                    setTimeout(() => {
-                        const botMessage = document.createElement('div');
-                        botMessage.className = 'message bot-message';
-                        botMessage.innerHTML = `
+            chatMessages.appendChild(userMessage);
+
+            // Clear input
+            chatInput.value = "";
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate bot response
+            setTimeout(() => {
+              const botMessage = document.createElement("div");
+              botMessage.className = "message bot-message";
+              botMessage.innerHTML = `
                             <div class="message-avatar">
                                 <img src="https://www.prabhujipurefood.com/wp-content/uploads/2024/07/Logo-2.gif" alt="Bot">
                             </div>
@@ -2663,23 +3060,49 @@
                                 <span class="message-time">Just now</span>
                             </div>
                         `;
-                        chatMessages.appendChild(botMessage);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 1000);
-                }
-            }
+              chatMessages.appendChild(botMessage);
+              chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+          }
+        }
 
-            // Event listeners
-            chatButton.addEventListener('click', toggleChat);
-            chatClose.addEventListener('click', toggleChat);
-            chatSend.addEventListener('click', sendMessage);
-            
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
+        // Event listeners
+        chatButton.addEventListener("click", toggleChat);
+        chatClose.addEventListener("click", toggleChat);
+        chatSend.addEventListener("click", sendMessage);
+
+        chatInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
         });
+
+        // WhatsApp button functionality
+        whatsappButton.addEventListener("click", function (e) {
+          e.stopPropagation(); // Prevent chat widget from opening
+          const phoneNumber = "1234567890"; // Replace with your WhatsApp business number
+          const message =
+            "Hello! I need help with Prabhuji Pure Food products.";
+          const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+            message
+          )}`;
+          window.open(whatsappUrl, "_blank");
+        });
+
+        // Standalone WhatsApp button functionality
+        const whatsappStandalone = document.getElementById("whatsappStandalone");
+        if (whatsappStandalone) {
+          whatsappStandalone.addEventListener("click", function () {
+            const phoneNumber = "1234567890"; // Replace with your WhatsApp business number
+            const message =
+              "Hello! I'm interested in Prabhuji Pure Food products. Can you help me?";
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+              message
+            )}`;
+            window.open(whatsappUrl, "_blank");
+          });
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
